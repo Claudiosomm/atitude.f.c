@@ -1,0 +1,12 @@
+body {
+    background: #c9a402;
+}
+
+.sobre-box {
+    background: #000;
+    color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: auto;
+}

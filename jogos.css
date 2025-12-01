@@ -1,0 +1,20 @@
+body {
+    background: #c9a402;
+}
+
+.jogos-galeria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.jogos-galeria img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .jogos-galeria {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,73 @@
+/* ============================
+   MENU LATERAL (GLOBAL)
+============================ */
+.menu-esquerdo {
+    background-color: #000;
+    width: 250px;
+    min-height: 100vh;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Caixa do escudo */
+.escudo-box {
+    width: 100%;
+    background: #111;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Escudo responsivo */
+.escudo-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Links do menu */
+.menu-esquerdo a {
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
+    background: #222;
+    padding: 12px;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Ajuste do conteúdo para não ficar atrás do menu */
+.conteudo {
+    margin-left: 270px;
+    padding: 30px;
+}
+
+/* MENU RESPONSIVO */
+@media (max-width: 768px) {
+    .menu-esquerdo {
+        width: 180px;
+    }
+    .conteudo {
+        margin-left: 200px;
+    }
+}
+
+/* ============================
+   FOOTER (GLOBAL)
+============================ */
+footer {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    margin-top: 40px;
+}
