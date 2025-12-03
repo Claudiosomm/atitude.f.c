@@ -1,73 +1,181 @@
-/* ============================
-   MENU LATERAL (GLOBAL)
-============================ */
-.menu-esquerdo {
-    background-color: #000;
-    width: 250px;
-    min-height: 100vh;
+@charset "UTF-8";
+
+/* ======================================
+        VARIÁVEIS DE COR
+====================================== */
+:root {
+    --preto: #000000;
+    --amarelo: #c9a402;
+    --cinza: #c9a402;
+    --branco: #c9a402;
+    --color: #e06000;
+    --color: #c04000;
+}
+
+/* ======================================
+        RESET
+====================================== */
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f08b3e;
+}
+
+
+header {
+    background-color: black;
+    padding: 10px 0;
+}
+
+/* Mantendo o escudo como era antes (grande) */
+.escudo {
+    height: 320px;
+    max-width: 200%;
+}
+
+.header-content {
+    width: 95%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* MENU */
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* MENU RESPONSIVO (sem hamburger) */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+/* ======================================
+        ELENCO – GRADE
+====================================== */
+.elenco {
     padding: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    color: #fff;
+    text-align: center;
+}
+
+.galeria-elenco {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px;
+}
+
+.jogador-card {
+    background: var(--branco);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 10px#0003;
+    min-height: 350px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
 }
 
-/* Caixa do escudo */
-.escudo-box {
+.foto-jogador {
     width: 100%;
-    background: #111;
-    padding: 15px;
+    height: 250px;
+    object-fit: cover;
     border-radius: 10px;
-    margin-bottom: 20px;
+    cursor: pointer;
 }
 
-/* Escudo responsivo */
-.escudo-box img {
-    width: 100%;
-    height: auto;
-    display: block;
+/* COMENTÁRIOS */
+.comentarios {
+    text-align: left;
+    margin-top: 10px;
+    font-size: 14px;
 }
 
-/* Links do menu */
-.menu-esquerdo a {
-    width: 100%;
-    color: #fff;
-    text-decoration: none;
-    background: #222;
-    padding: 12px;
-    border-radius: 8px;
-    display: block;
-    text-align: center;
-    margin-bottom: 10px;
+.comentarios p {
+    background: var(--cinza);
+    padding: 6px;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
-/* Ajuste do conteúdo para não ficar atrás do menu */
-.conteudo {
-    margin-left: 270px;
-    padding: 30px;
+.form-comentario {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
 }
 
-/* MENU RESPONSIVO */
+.form-comentario input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.form-comentario button {
+    padding: 8px 12px;
+    background: var(--preto);
+    color: var(--amarelo);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* RESPONSIVO – ELENCO */
 @media (max-width: 768px) {
-    .menu-esquerdo {
-        width: 180px;
-    }
-    .conteudo {
-        margin-left: 200px;
+    .galeria-elenco {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
-/* ============================
-   FOOTER (GLOBAL)
-============================ */
+@media (max-width: 480px) {
+    .galeria-elenco {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======================================
+        FOOTER
+====================================== */
 footer {
-    width: 100%;
-    padding: 20px;
+    background: var(--preto);
+    color: var(--amarelo);
+    padding: 20px 10px;
     text-align: center;
-    background: #000;
-    color: #fff;
-    margin-top: 40px;
+    font-size: 16px;
+}
+
+/* Footer no celular */
+@media (max-width: 768px) {
+    footer {
+        padding: 30px 10px;
+        font-size: 14px;
+    }
 }
