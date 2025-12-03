@@ -1,150 +1,92 @@
-/* COR PRINCIPAL */
-body {
-    background: #c9a402;
-}
-
-/* Conteúdo principal */
-.conteudo {
-    margin-left: 270px;
-    padding: 20px;
-}
-
-/* Título */
-h1 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* GALERIA */
+/* ===================================================================
+   GALERIA DE FOTOS - LAYOUT GERAL
+=================================================================== */
 .galeria {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(6, 1fr); /* 6 colunas no PC */
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
 }
 
-.card {
-    background: #000;
-    padding: 10px;
-    border-radius: 10px;
+h1 {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+div > h1 {
+    padding: 30px;
+    margin-top: 30px;
+    background: linear-gradient(to right, #e06000, #c04000); /* preto → cinza */
+    color: #c9a402;
     text-align: center;
 }
 
-.card img {
+/* ===================================================================
+   BLOCO INDIVIDUAL DE CADA JOGADOR (foto + texto)
+=================================================================== */
+.imagem-container {
+    background: #ffffff20;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    box-shadow: 02px 2px 2px 2px rgba(2, 2, 2, 2);
+}
+
+/* ===================================================================
+   IMAGEM DO JOGADOR
+   object-position: top -> Mantém o rosto visível
+=================================================================== */
+
+.imagem-container img {
     width: 100%;
     height: auto;
+    object-fit: cover;
+    object-position: top;
     border-radius: 10px;
     cursor: pointer;
+    transition: transform 0.3s ease; /* Efeito de transição para as imagens */
 }
 
-.card p {
-    color: #fff;
-    margin-top: 10px;
+.imagem-container img:hover {
+    transform: scale(1.1); /* Aumenta a imagem ao passar o mouse */
 }
 
-/* RESPONSIVIDADE */
+
+/* ===================================================================
+   TEXTO ABAIXO DA FOTO
+=================================================================== */
+.imagem-container div {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #000;
+    line-height: 1.3;
+}
+
+/* ===================================================================
+   RESPONSIVIDADE – CELULAR
+=================================================================== */
+
 @media (max-width: 768px) {
-    .conteudo {
-        margin-left: 190px;
-    }
-
     .galeria {
-        grid-template-columns: 1fr;
+        grid-template-columns: 6fr; /* 1 foto por linha */
     }
-}
 
-/* LIGHTBOX */
-#lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
 
-#lightbox.ativo {
-    display: flex;
-}
+    .imagem-container {
+        max-width: 90%; /* ocupa quase toda a tela */
+    }
 
-#lightbox img {
-    max-width: 85%;
-    max-height: 85%;
-    border-radius: 10px;
-}
 
-/* Botões */
-.lightbox-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 45px;
-    padding: 15px 20px;
-    background: rgba(0,0,0,0.4);
-    color: #fff;
-    border-radius: 8px;
-    cursor: pointer;
-}
+    .imagem-container img {
+        height: auto; /* A altura agora se adapta ao tamanho da tela */
+    }
 
-#btn-prev {
-    left: 25px;
-}
 
-#btn-next {
-    right: 25px;
-}
-/* LIGHTBOX FUNDO */
-#lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.85);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-}
-
-#lightbox.ativo {
-    display: flex;
-}
-
-/* IMAGEM */
-#lightbox-img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-}
-
-/* BOTÕES */
-.lightbox-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.6);
-    border: none;
-    font-size: 50px;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 8px;
-    z-index: 1000000; /* impede conflito */
-}
-
-#btn-prev {
-    left: 40px;
-}
-
-#btn-next {
-    right: 40px;
-}
-
-/* BOTÃO HOVER */
-.lightbox-btn:hover {
-    background: rgba(0,0,0,0.9);
+    .imagem-container div {
+        font-size: 16px; /* Aumenta o tamanho da fonte nas telas menores */
+    }
 }
