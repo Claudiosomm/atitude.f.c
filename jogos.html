@@ -3,37 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogos</title>
+    <title>Elenco - Novo Esquema</title>
+
+    <!-- CSS global (menu) -->
     <link rel="stylesheet" href="global.css">
+
+    <!-- CSS desta página -->
     <link rel="stylesheet" href="jogos.css">
-    <link rel="stylesheet" href="menu_footer.css">
+
+    <!-- SimpleLightbox CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/simplelightbox@2.4.0/dist/simple-lightbox.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="colocar a foto de favicon" type="image/x-icon">
 </head>
 <body>
-
-    <aside class="menu-esquerdo">
-        <div class="escudo-box">
-            <img src="escudo.jpeg" alt="Escudo">
+    <header>
+        <div class="header-content">
+            <img src="escudo.jpeg" class="escudo" alt="Escudo">
+    
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="elenco.html">Fotos</a>
+                <a href="jogos.html">Jogos</a>
+            </nav>
         </div>
-        <a href="index.html">Início</a>
-        <a href="elenco.html">Elenco</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="jogos.html">Jogos</a>
-    </aside>
+    </header>
+    
+    <div>
+        <h1>Jogos</h1>
+    </div>
 
-    <main class="conteudo">
-        <h1>Fotos dos Jogos</h1>
-
-        <div class="jogos-galeria">
-            <img src="tatuagem.jpeg">
-            <img src="loucos.jpeg">
-            <img src="escudo.jpeg">
-            <img src="fogos.jpeg">
-            <img src="fogos2.jpeg">
-            <img src="trofel.jpeg">
+    <div class="galeria">
+        <!-- Imagem do Jhonny -->
+        <div class="imagem-container">
+            <a href="jogo3011.jpeg" class="lightbox">
+                <img src="jogo3011.jpeg" alt="jogo3011">
+            </a>
+            <div class="jogo3011">
+                <p>Será um jogão no dia 30/11</p>
+            </div>
         </div>
 
-    </main>
+         <!-- Imagem do Yuri -->
+         <div class="imagem-container">
+            <a href="resultado3011.jpeg" class="lightbox">
+                <img src="resultado3011.jpeg" alt="resultado3011">
+            </a>
+            <div class="resultado3011">
+                <p>A vitória veio, com muito sacrifício mas veio.</p>
+            </div>
+        </div>
 
-   
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.4.0/dist/simple-lightbox.min.js"></script>
+    
+    <script>
+        // Inicializa o SimpleLightbox com opções de responsividade
+        var lightbox = new SimpleLightbox('.lightbox', {
+            // Configuração para a responsividade da imagem
+            maxWidth: '90%',
+            maxHeight: '90vh',  // Limita a altura máxima da imagem
+            closeText: 'X',  // Fechar com um X
+        });
+    </script>
+
+    <footer>
+        &trade; Site criado pelo Cláudio para o time Novo Esquema F.C.
+    </footer>
 </body>
 </html>
