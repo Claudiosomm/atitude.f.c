@@ -1,18 +1,199 @@
-body {
-    background: #c9a402;
+@charset "UTF-8";
+
+div{
+    text-align: center;
+    font-size: 16px;
 }
 
-/* Caixa do vídeo */
-.video-box {
-    background: #000;
+p{
+    margin-top: 30px;
+}
+
+div > h1 {
+    padding: 30px;
+    margin-top: 30px;
+    background: linear-gradient(to right, #e06000, #c04000); /* preto → cinza */
+    color: #c9a402;
+    text-align: center;
+}
+
+/* Container que mantém a proporção 16:9 */
+.video-container {
+    position: relative;
+    z-index: 1; /*vídeo fica atrás do menu*/
+    width: 100%;
+    max-width: 900px; /* tamanho máximo do vídeo */
+    margin: 20px auto; /* centraliza */
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #0004;
+}
+
+.tema{
+    font-size:30px;
+    padding-top: 0px;
+    text-align: center;
+}
+
+.evento{
+    font-size:30px;
+    padding-top: 0px;
+    text-align: center;
+}
+
+/* Ajuste do iframe dentro do container */
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    padding: 20px;
+}
+
+h1{
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+.escudo {
+    height: 150px;
+    text-align: justify;
+}
+
+/* Botão hambúrguer */
+.menu-btn {
+    display: none;
+    font-size: 34px;
+    background: none;
+    border: none;
+    color: var(--amarelo); /* Amarelo escuro no botão */
+    cursor: pointer;
+}
+
+/* Cards */
+.card {
+    background: var(--branco); /* Fundo branco para os cards */
+    margin: 20px;
     padding: 20px;
     border-radius: 10px;
-    max-width: 700px;
-    margin: auto;
 }
 
-.video-box iframe {
+/* Galeria */
+.galeria {
+    display: flex;
+    gap: 10px;
+}
+
+.foto {
+    width: 150px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox img {
+    width: 90%;
+    max-width: 450px;
+    border-radius: 12px;
+}
+
+
+/* ================================
+   ELENCO – GRADE DE FOTOS
+================================ */
+.elenco {
+    padding: 20px;
+    text-align: center;
+}
+
+.galeria-elenco {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.jogador-card {
+    background: var(--branco);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 8px #0002;
+}
+
+/* Fotos */
+.foto-jogador {
     width: 100%;
-    height: 400px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Comentários */
+.comentarios {
+    text-align: left;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.comentarios p {
+    background: var(--cinza);
+    padding: 6px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.form-comentario {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.form-comentario input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
+.form-comentario button {
+    padding: 8px 12px;
+    background: var(--preto);
+    color: var(--amarelo);
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .galeria-elenco {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .galeria-elenco {
+        grid-template-columns: 1fr;
+    }
 }
