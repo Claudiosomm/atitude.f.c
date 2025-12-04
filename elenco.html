@@ -1,226 +1,174 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fotos do Atitude F.C</title>
+    <title>Elenco - Atitude F.C.</title>
 
-    <!-- CSS global (menu) -->
     <link rel="stylesheet" href="global.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- CSS desta página -->
-    <link rel="stylesheet" href="elenco.css">
-
-    <!-- SimpleLightbox CSS -->
+    <!-- Lightbox -->
     <link href="https://cdn.jsdelivr.net/npm/simplelightbox@2.4.0/dist/simple-lightbox.min.css" rel="stylesheet">
-
-    <link rel="shortcut icon" href="colocar a foto de favicon" type="image/x-icon">
 </head>
+
 <body>
-    <header>
-        <div class="header-content">
-            <img src="escudo.jpeg" class="escudo" alt="Escudo">
-    
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="elenco.html">fotos</a>
-                <a href="jogos.html">Jogos</a>
-            </nav>
+
+<header>
+    <div class="header-content">
+
+        <div class="globo-escudo">
+            <img src="escudo.jpeg" class="frente">
         </div>
-    </header>
-    
-    <div>
-        <h1>Fotos</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="elenco.html" class="ativo">Elenco</a>
+            <a href="jogos.html">Jogos</a>
+        </nav>
+
+    </div>
+</header>
+
+<section class="titulo-pagina">
+    <h1>Elenco</h1>
+</section>
+
+<section class="galeria">
+
+    <div class="imagem-container">
+        <a href="selecao.jpeg" class="lightbox">
+            <img src="selecao.jpeg" alt="selecao.jpeg">
+        </a>
+        <p>Essa seleção foi a responsável pelo título dos jogos da cidade em 2025</p>
     </div>
 
-    <div class="galeria">
-        <!-- Imagem do kelson -->
-        <div class="imagem-container">
-            <a href="selecao.jpeg" class="lightbox">
-                <img src="selecao.jpeg" alt="Foto da seleção">
-            </a>
-            <div class="selecao">
-                <p>Essa é a seleção da Bela Vista!!! Um verdadeiro terror para os adversários.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="equipe.jpeg" class="lightbox">
+            <img src="equipe.jpeg" alt="equipe">
+        </a>
+        <p>Esse é o elenco que todo time gostaria ter.</p>
+    </div>
 
-         <!-- Imagem do Yuri -->
-         <div class="imagem-container">
-            <a href="equipe.jpeg" class="lightbox">
-                <img src="equipe.jpeg" alt="Foto da equipe">
-            </a>
-            <div class="equipe">
-                <p>Essa é a equipe campeã de 2025.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="comemoracao.jpeg" class="lightbox">
+            <img src="comemoracao.jpeg" alt="comemoração">
+        </a>
+        <p>Momento marcante para todos que fazem parte do <strong>Atitude F.C</strong></p>
+    </div>
 
-        <!-- Imagem do Yuri -->
-        <div class="imagem-container">
-            <a href="yuri.jpeg" class="lightbox">
-                <img src="yuri.jpeg" alt="Foto do yuri">
-            </a>
-            <div class="yuri">
-                <p>O Yuri é liso!!! Pra pegar só na falta mesmo.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="fogos2.jpeg" class="lightbox">
+            <img src="fogos2.jpeg" alt="fogos2">
+        </a>
+        <p>Hora da entrada para o confronto da grande final.</p>
+    </div>
 
-        <!-- Imagem da kelson -->
-        <div class="imagem-container">
-            <a href="kelson.jpeg" class="lightbox">
-                <img src="kelson.jpeg" alt="Foto do kelson">
-            </a>
-            <div class="kelson">
-                <p>Esse Kenson é zica!!! De vez em quando ele acerta uma conhota endefensál no time adversário.</p>
-                
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="medalha.jpeg" class="lightbox">
+            <img src="medalha.jpeg" alt="medalha">
+        </a>
+        <p>Essa é a mais disputada em todos os torneios, e nós já temos uma.</p>
+    </div>
 
-          <!-- Imagem do medalha -->
-          <div class="imagem-container">
-            <a href="medalha.jpeg" class="lightbox">
-                <img src="medalha.jpeg" alt="Foto da medalha">
-            </a>
-            <div class="medalha">
-                <p>Essa medalha é do campeonado da cidade de São Paulo, onde o <strong>Atitude</strong> foi Campeão em 2025.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="trofel.jpeg" class="lightbox">
+            <img src="trofel.jpeg" alt="trofel">
+        </a>
+        <p>Esse momento é o mais marcante e esoerado. Parabéns <strong>Atitude F.C.</strong></p>
+    </div>
 
-         <!-- Imagem dos loucos -->
-         <div class="imagem-container">
-            <a href="loucos.jpeg" class="lightbox">
-                <img src="loucos.jpeg" alt="Foto dos loucos">
-            </a>
-            <div class="loucos">
-                <p>Esse trio aí estava pra lá de Bagdá.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="sinuca.jpeg" class="lightbox">
+            <img src="sinuca.jpeg" alt="sinuca">
+        </a>
+        <p>Esse foi o útimo a ir embora na comemoração do título inédito do <strong>Atitude F.C.</strong></p>
+    </div>
 
-         <!-- Imagem do banco -->
-         <div class="imagem-container">
-            <a href="banco.jpeg" class="lightbox">
-                <img src="banco.jpeg" alt="Foto do banco">
-            </a>
-            <div class="banco">
-                <p>Esse time é forte de verdade!!! Uma seleção em campo e um banco desse, quem ganha?</p>
-            </div>
-        </div>
-      
-         <!-- Imagem da bandeira -->
-         <div class="imagem-container">
-            <a href="bandeira.jpeg" class="lightbox">
-                <img src="bandeira.jpeg" alt="Foto da bandeira">
-            </a>
-            <div class="Bandeira">
-                <p>Bandeira que representa o melhor time da região central de São Paulo.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="uniformizados.jpeg" class="lightbox">
+            <img src="uniformizados.jpeg" alt="uniformizados">
+        </a>
+        <p>Essa é a elite do time.</p>
+    </div>
 
-         <!-- Imagem do bandeira 2 -->
-         <div class="imagem-container">
-            <a href="bandeira2.jpeg" class="lightbox">
-                <img src="bandeira2.jpeg" alt="Foto da bandeira2">
-            </a>
-            <div class="bandeira2">
-                <p>Essa bandeira assusta até os adversários. Quando eles chegam a bandeira ja está colocada.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="loucos.jpeg" class="lightbox">
+            <img src="loucos.jpeg" alt="loucos">
+        </a>
+        <p>Oha os feras ai!!! Todos os jogos a união na resenha.</p>
+    </div>
 
-        <!-- Imagem do cláudio  -->
-        <div class="imagem-container">
-            <a href="claudio.jpeg" class="lightbox">
-                <img src="claudio.jpeg" alt="Foto do claudio">
-            </a>
-            <div class="claudio">
-                <p>Esse aí não assusta muito os adversários não. Mas de vez em quando vai expulso de campo por xingar o Juiz.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="yuri.jpeg" class="lightbox">
+            <img src="yuri.jpeg" alt="yuri.jpeg]">
+        </a>
+        <p>Esse é liso!!! Se deixar entra com bola e tudo.</p>
+    </div>
 
-        <!-- Imagem do tatuagem -->
-        <div class="imagem-container">
-            <a href="tatuagem.jpeg" class="lightbox">
-                <img src="tatuagem.jpeg" alt="tatuagem">
-            </a>
-            <div class="tatuagem">
-                <p>Esses integrantes são fanáticos!!! As tatuagens provam isso.</p>  
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="kelson.jpeg" class="lightbox">
+            <img src="kelson.jpeg" alt="kelson">
+        </a>
+        <p>Esse de vez em quando manda umas canhotas para o gol. Só pancada!!!</p>
+    </div>
 
-        <!-- Imagem do mensagem -->
-        <div class="imagem-container">
-            <a href="mensagem.jpeg" class="lightbox">
-                <img src="mensagem.jpeg" alt="Foto da mensagem">
-            </a>
-            <div class="mensagem">
-                <p>Essa foto deixa uma clara menságem do que um verdadeiro homem de atitude deve ter.</p>  
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="claudio.jpeg" class="lightbox">
+            <img src="claudio.jpeg" alt="claudio">
+        </a>
+        <p>Esse vai de vez em quando, aí quer sair jogando, kkkkk.</p>
+    </div>
 
-        <!-- Imagem dos fogos -->
-        <div class="imagem-container">
-            <a href="fogos.jpeg" class="lightbox">
-                <img src="fogos.jpeg" alt="foto dos fogos">
-            </a>
-            <div class="fogos">
-                <p>Esse dia foi hilário!!! Fomos campeões dos jogos da cidade.</p>  
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="tatuagem.jpeg" class="lightbox">
+            <img src="tatuagem.jpeg" alt="tatuagem">
+        </a>
+        <p>Esses são os exemplos de fanatismo pelo time do <strong>Atitude F.C.</strong></p>
+    </div>
 
-        <!-- Imagem dos comemoração  -->
-        <div class="imagem-container">
-            <a href="comemoracao.jpeg" class="lightbox">
-                <img src="comemoracao.jpeg" alt="Foto da comemoração">
-            </a>
-            <div class="comemoração">
-                <p>Aí foi festa demais!!! Ser campeão dos jogos da cidade não é pra qualquer um.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="banco.jpeg" class="lightbox">
+            <img src="banco.jpeg" alt="banco">
+        </a>
+        <p>O time tem titulares, mas o banco é forte também!!!</p>
+    </div>
 
-        <!-- Imagem do sinuca  -->
-        <div class="imagem-container">
-            <a href="sinuca.jpeg" class="lightbox">
-                <img src="sinuca.jpeg" alt="Foto da sinuca">
-            </a>
-            <div class="sinuca">
-                <p>Ta aí o último que saiu da festa de comemoração do título do time. Estava muito louco!!!</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="bandeira.jpeg" class="lightbox">
+            <img src="bandeira.jpeg" alt="bandeira">
+        </a>
+        <p>Essa é a mensagem do time mais temido da Bela Vista, o <strong>Atitude F.C.</strong></p>
+    </div>
 
-         <!-- Imagem do Trofel  -->
-         <div class="imagem-container">
-            <a href="trofel.jpeg" class="lightbox">
-                <img src="trofel.jpeg" alt="Foto do trofel">
-            </a>
-            <div class="Trofel">
-                <p>Aí é o nosso capitão Tonho Coelho recebendo o trofel de Campeão.</p>
-            </div>
-        </div>
+    <div class="imagem-container">
+        <a href="bandeira2.jpeg" class="lightbox">
+            <img src="bandeira2.jpeg" alt="bandeira2">
+        </a>
+        <p>Essa bandeira é muito bonita. Não tem como passar despercebido.</p>
+    </div>
 
-        <!-- Imagem do uniformizados  -->
-        <div class="imagem-container">
-            <a href="uniformizados.jpeg" class="lightbox">
-                <img src="uniformizados.jpeg" alt="Foto dos uniformizados">
-            </a>
-            <div class="uniformizados">
-                <p>Esses são os feras que garantem a estrutura do time do Atitude F.C.</p>
-            </div>
-        </div>
-    </div>  
-
-    <script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.4.0/dist/simple-lightbox.min.js"></script>
+    <div class="imagem-container">
+        <a href="mensagem.jpeg" class="lightbox">
+            <img src="mensagem.jpeg" alt="mensagem.jpeg">
+        </a>
+        <p>Esse é o conselho de todo o time para a molecada. Que sirva de inspiração!!!</p>
+    </div>
     
-    <script>
-        // Inicializa o SimpleLightbox com opções de responsividade
-        var lightbox = new SimpleLightbox('.lightbox', {
-            // Configuração para a responsividade da imagem
-            maxWidth: '90%',
-            maxHeight: '90vh',  // Limita a altura máxima da imagem
-            closeText: 'X',  // Fechar com um X
-        });
-    </script>
-    <link rel="stylesheet" href="script.js">
+    
 
-    <footer>
-        &trade; Site criado pelo Cláudio para o Atitude F.C.
-    </footer>
+</section>
+
+<footer>
+    &trade; Site criado pelo Cláudio para o time Atitude F.C.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.4.0/dist/simple-lightbox.min.js"></script>
+
+<script>
+    new SimpleLightbox('.lightbox');
+</script>
+
 </body>
 </html>
