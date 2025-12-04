@@ -273,3 +273,51 @@ footer {
     font-family: Arial, sans-serif;
     color: #333;
 }
+
+/* Estilos para a Seção de Mídias Sociais */
+.social-media {
+    text-align: center; /* Centraliza o conteúdo dentro da seção */
+    padding: 20px 0; /* Adiciona algum espaço acima e abaixo */
+    margin-top: 30px; /* Espaço para separar da seção anterior */
+    border-top: 1px solid #ccc; /* Linha sutil para separar do conteúdo */
+}
+
+.social-icons {
+    display: flex; /* Permite alinhar os links lado a lado */
+    justify-content: center; /* Centraliza os links na horizontal */
+    gap: 30px; /* Espaço entre os links */
+}
+
+.icon-link {
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.icon-link:hover {
+    transform: translateY(-2px); /* Efeito sutil ao passar o mouse */
+    opacity: 0.9;
+}
+
+.icon {
+    font-size: 1.3rem; /* Tamanho do emoji/ícone */
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+}
+
+/* Estilos Específicos por Rede */
+.instagram {
+    color: white; /* Cor do texto */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tiktok {
+    color: white;
+    background-color: #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 2px 2px #25F4EE, -2px -2px #FF0050; /* Efeito de sombra do TikTok */
+}
