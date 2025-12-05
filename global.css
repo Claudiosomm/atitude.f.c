@@ -1,4 +1,3 @@
-
 @charset "UTF-8";
 
 /* ======================================
@@ -320,4 +319,83 @@ footer {
     color: white;
     background-color: #000000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 2px 2px #25F4EE, -2px -2px #FF0050; /* Efeito de sombra do TikTok */
+}
+
+/* GRID DA PÁGINA */
+.jogadores-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 por linha no PC */
+    gap: 30px;
+    padding: 30px;
+}
+
+/* Caixa que mantém tudo do mesmo tamanho */
+.card-box {
+    width: 100%;
+    height: 420px;            /* altura fixa */
+    background: #000;         /* fundo para destaque */
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARD 3D */
+.card {
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card-box:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Frente e verso */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Foto ajustada SEM cortar jogador */
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* ❤️ NÃO CORTA A FOTO */
+    background: #000;
+}
+
+/* Verso */
+.card-back {
+    background: #111;
+    color: white;
+    padding: 20px;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* RESPONSIVO — 1 por linha no celular */
+@media (max-width: 768px) {
+    .jogadores-container {
+        grid-template-columns: 1fr;
+    }
+
+    .card-box {
+        height: 380px; /* reduz um pouco para caber melhor no celular */
+    }
 }
