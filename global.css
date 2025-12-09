@@ -56,8 +56,6 @@ body::before {
     will-change: transform;
 }
 
-
-
 /* ======================================
         HEADER
 ====================================== */
@@ -277,21 +275,6 @@ footer {
     color: #333;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ======================================
         VÍDEOS – CAIXAS DOURADAS
 ====================================== */
@@ -484,7 +467,6 @@ footer {
     transform: rotateY(180deg);
 }
 
-
 /* RESPONSIVO — 1 por linha no celular */
 @media (max-width: 768px) {
     .jogadores-container {
@@ -495,15 +477,6 @@ footer {
         height: 380px; /* reduz um pouco para caber melhor no celular */
     }
 }
-
-
-
-
-
-
-
-
-
 
 /* ======================================
       CARTÕES DOS JOGADORES (ajustados para combinar com a galeria)
