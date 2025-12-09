@@ -364,20 +364,6 @@ footer {
     display: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Estilos para a Seção de Mídias Sociais */
 .social-media {
     text-align: center; /* Centraliza o conteúdo dentro da seção */
@@ -493,6 +479,11 @@ footer {
     justify-content: center;
     text-align: center;
 }
+
+.card.virado {
+    transform: rotateY(180deg);
+}
+
 
 /* RESPONSIVO — 1 por linha no celular */
 @media (max-width: 768px) {
