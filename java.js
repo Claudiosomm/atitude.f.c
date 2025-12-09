@@ -247,3 +247,29 @@
   
   }());
   
+  /* ================================
+   VIRAR CARTA ENQUANTO SEGURA
+================================ */
+
+document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+        // 🟡 VIRAR quando SEGURAR (dedo ou mouse)
+        const virar = () => card.classList.add("virado");
+
+        // 🔵 DESVIRAR quando SOLTAR
+        const desvirar = () => card.classList.remove("virado");
+
+        // Mouse
+        card.addEventListener("mousedown", virar);
+        card.addEventListener("mouseup", desvirar);
+        card.addEventListener("mouseleave", desvirar);
+
+        // Touch (celular)
+        card.addEventListener("touchstart", virar);
+        card.addEventListener("touchend", desvirar);
+        card.addEventListener("touchcancel", desvirar);
+    });
+});
