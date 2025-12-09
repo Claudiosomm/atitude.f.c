@@ -144,6 +144,10 @@ nav a {
     transition: color .3s ease;
 }
 
+h1{
+    text-align: center;
+}
+
 /* underline neon moderno */
 nav a::after {
     content: "";
@@ -273,6 +277,107 @@ footer {
     color: #333;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======================================
+        VÍDEOS – CAIXAS DOURADAS
+====================================== */
+
+.container-videos h2 {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+/* GRID IGUAL À GALERIA DAS FOTOS */
+.galeria-videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+/* CARD COM O MESMO ESTILO DOURADO */
+.card-video {
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 204, 0, 0.25);
+    border-radius: 14px;
+    padding: 12px;
+    transition: transform .3s ease, box-shadow .3s ease;
+    backdrop-filter: blur(4px);
+    text-align: center;
+}
+
+.card-video:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
+}
+
+/* TÍTULO ABAIXO DO VÍDEO */
+.card-video h3 {
+    font-size: 17px;
+    font-weight: normal;
+    margin-top: 10px;
+    color: var(--branco);
+}
+
+/* VÍDEO RESPONSIVO */
+.video-responsivo {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* proporção 16:9 */
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--amarelo);
+}
+
+.video-responsivo iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* AJUSTE NO CELULAR */
+@media (max-width: 480px) {
+    .card-video h3 {
+        font-size: 15px;
+    }
+}
+
+.data-nascimento {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Estilos para a Seção de Mídias Sociais */
 .social-media {
     text-align: center; /* Centraliza o conteúdo dentro da seção */
@@ -398,4 +503,120 @@ footer {
     .card-box {
         height: 380px; /* reduz um pouco para caber melhor no celular */
     }
+}
+
+
+
+
+
+
+
+
+
+
+/* ======================================
+      CARTÕES DOS JOGADORES (ajustados para combinar com a galeria)
+====================================== */
+
+.jogadores-grid {
+    display: grid;
+    gap: 25px;
+    padding: 20px;
+
+    /* PC: 3 por linha (como você pediu) */
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* CELULAR: 1 por linha */
+@media (max-width: 768px) {
+    .jogadores-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Container com mesmo estilo das fotos do ELENCO */
+.card-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 260px;
+    margin: auto;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 204, 0, 0.25);
+    border-radius: 14px;
+    padding: 12px;
+    backdrop-filter: blur(4px);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+/* CELULAR — ocupa quase toda a tela */
+@media (max-width: 768px) {
+    .card-container {
+        max-width: 90%;   /* deixa larguinha */
+        width: 100%;      /* ocupa toda largura do grid */
+    }
+}
+
+
+.card-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
+}
+
+/* Estrutura da carta */
+.card {
+    position: relative;
+    width: 100%;
+    height: 360px;   /* altura igual ao equilíbrio do elenco */
+    transform-style: preserve-3d;
+    transition: transform .6s ease-in-out;
+}
+
+/* PC – vira ao passar o mouse */
+.card-container:hover .card {
+    transform: rotateY(180deg);
+}
+
+/* CELULAR – vira enquanto o dedo estiver pressionando */
+@media (hover: none) {
+    .card-container:active .card {
+        transform: rotateY(180deg);
+    }
+}
+
+/* Frente e verso */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Frente (foto — não corta cabeça!) */
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* cobre a área inteira */
+    object-position: top; /* garante cabeça visível */
+
+    border-radius: 12px;
+    border: 1px solid var(--amarelo);
+}
+
+/* Verso */
+.card-back {
+    background: rgb(20, 20, 20);
+    color: white;
+    transform: rotateY(180deg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--amarelo);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
