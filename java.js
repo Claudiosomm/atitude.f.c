@@ -55,173 +55,129 @@ lightbox.addEventListener('click', (e) => {
     }
 });
 
-/* =======================================
-   FLIP NOS JOGADORES (PC + CELULAR)
-======================================= */
-const cards = document.querySelectorAll(".jogador-card");
 
-/* PC - hover */
-cards.forEach(card => {
-    card.addEventListener("mouseenter", () => {
-        if (!isMobile()) card.classList.add("virado");
-    });
-    card.addEventListener("mouseleave", () => {
-        if (!isMobile()) card.classList.remove("virado");
-    });
-});
+/* ======================================================
+   FLIP DOS JOGADORES (PC = hover / CELULAR = clique)
+====================================================== */
 
-/* CELULAR - clique */
-cards.forEach(card => {
-    card.addEventListener("click", () => {
-        if (!isMobile()) return;
-
-        const jaVirado = card.classList.contains("virado");
-
-        cards.forEach(c => c.classList.remove("virado"));
-
-        if (!jaVirado) {
-            card.classList.add("virado");
-        }
-    });
-});
-
-/* Detecta celular */
+// Detecta celular
 function isMobile() {
     return window.innerWidth <= 768;
 }
 
-/* Garantir escudo */
-window.addEventListener('resize', () => {
-    const escudo = document.querySelector('.escudo-box img');
-    if (escudo) {
-        escudo.style.display = 'block';
-        escudo.style.width = '100%';
-    }
-});
-/* ======== Flip no celular sem mexer no CSS ======== */
+// Configura o flip
+function setupFlip() {
+    const cards = document.querySelectorAll(".card");
 
-document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", function () {
+    cards.forEach(card => {
 
-        // Se já estiver virada → desvirar
-        if (this.classList.contains("flip")) {
-            this.classList.remove("flip");
-            return;
-        }
-
-        // Desvira todas as outras antes de virar a clicada
-        document.querySelectorAll(".card.flip").forEach(c => {
-            c.classList.remove("flip");
-        });
-
-        // Vira a clicada
-        this.classList.add("flip");
-    });
-});
-
-/* flip-age.js - controla flip no celular e calcula idades automaticamente */
-(function () {
-    'use strict';
-  
-    function isMobile() {
-      return window.innerWidth <= 768;
-    }
-  
-    // --- FLIP behavior ---
-    function setupFlip() {
-      document.querySelectorAll('.card').forEach(card => {
-        // Evita múltiplos listeners
+        // Evita duplicar listeners
         if (card.__flipInitialized) return;
         card.__flipInitialized = true;
-  
-        card.addEventListener('click', function (e) {
-          // se desktop e hover já cuida, não interferimos (mas click pode ser usado também)
-          if (!isMobile()) {
-            // optional: allow click to also toggle on desktop if you want
-          }
-  
-          const already = this.classList.contains('virado');
-  
-          // desvira todos
-          document.querySelectorAll('.card.virado').forEach(c => {
-            if (c !== this) c.classList.remove('virado');
-          });
-  
-          // toggle no atual
-          if (already) this.classList.remove('virado');
-          else this.classList.add('virado');
-  
-          // evita que clique em elementos internos dispare ações externas
-          e.stopPropagation();
+
+        // PC → hover
+        card.addEventListener("mouseenter", () => {
+            if (!isMobile()) card.classList.add("virado");
         });
-      });
-  
-      // quando tocar fora, desvira tudo (bom UX)
-      document.addEventListener('click', function (e) {
-        // se o clique não foi em um card, desvira todos
+
+        card.addEventListener("mouseleave", () => {
+            if (!isMobile()) card.classList.remove("virado");
+        });
+
+        // Celular → clique
+        card.addEventListener("click", function (e) {
+            if (!isMobile()) return;
+
+            const jaVirado = this.classList.contains("virado");
+
+            // Desvirar todos antes
+            document.querySelectorAll(".card.virado").forEach(c => {
+                if (c !== this) c.classList.remove("virado");
+            });
+
+            // Alternar o atual
+            if (jaVirado) this.classList.remove("virado");
+            else this.classList.add("virado");
+
+            e.stopPropagation();
+        });
+    });
+
+    // Clique fora → desvirar tudo no celular
+    document.addEventListener('click', function (e) {
+        if (!isMobile()) return;
+
         if (!e.target.closest('.card')) {
-          document.querySelectorAll('.card.virado').forEach(c => c.classList.remove('virado'));
+            document.querySelectorAll(".card.virado")
+                .forEach(c => c.classList.remove("virado"));
         }
-      });
-    }
-  
-    // --- IDADE automatic update ---
-    function isValidDateString(s) {
-      if (!s) return false;
-      const d = new Date(s);
-      return !Number.isNaN(d.getTime());
-    }
-  
-    function calcularIdade(dataNasc) {
-      if (!isValidDateString(dataNasc)) return '';
-      const hoje = new Date();
-      const nasc = new Date(dataNasc);
-      let idade = hoje.getFullYear() - nasc.getFullYear();
-      const mes = hoje.getMonth() - nasc.getMonth();
-      if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())) idade--;
-      return idade;
-    }
-  
-    function atualizarIdades() {
-      // spans com class "idade" e atributo data-nasc
-      document.querySelectorAll('.idade[data-nasc]').forEach(span => {
+    });
+}
+
+
+/* =======================================
+   CÁLCULO AUTOMÁTICO DE IDADE
+======================================= */
+function isValidDateString(s) {
+    if (!s) return false;
+    const d = new Date(s);
+    return !Number.isNaN(d.getTime());
+}
+
+function calcularIdade(dataNasc) {
+    if (!isValidDateString(dataNasc)) return '';
+
+    const hoje = new Date();
+    const nasc = new Date(dataNasc);
+
+    let idade = hoje.getFullYear() - nasc.getFullYear();
+    const mes = hoje.getMonth() - nasc.getMonth();
+
+    if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())) idade--;
+
+    return idade;
+}
+
+function atualizarIdades() {
+    document.querySelectorAll('.idade[data-nasc]').forEach(span => {
         const data = span.getAttribute('data-nasc');
         const idade = calcularIdade(data);
-        span.textContent = (idade === '') ? '—' : String(idade);
-      });
-  
-      // preencher data formatada (opcional) nas spans data-nascimento
-      document.querySelectorAll('.data-nascimento[data-nasc]').forEach(span => {
+        span.textContent = idade || '—';
+    });
+
+    document.querySelectorAll('.data-nascimento[data-nasc]').forEach(span => {
         const data = span.getAttribute('data-nasc');
         if (!isValidDateString(data)) return;
+
         const d = new Date(data);
         const dia = String(d.getDate()).padStart(2, '0');
         const mes = String(d.getMonth() + 1).padStart(2, '0');
         const ano = d.getFullYear();
+
         span.textContent = `${dia}/${mes}/${ano}`;
-      });
-    }
-  
-    // init on DOM ready
-    document.addEventListener('DOMContentLoaded', function () {
-      setupFlip();
-      atualizarIdades();
-  
-      // atualiza idades à meia-noite (se a página ficar aberta)
-      (function scheduleMidnightUpdate() {
+    });
+}
+
+
+/* =======================================
+   INICIALIZAÇÃO
+======================================= */
+document.addEventListener('DOMContentLoaded', function () {
+    setupFlip();
+    atualizarIdades();
+
+    // Atualiza automáticamente à meia-noite
+    (function scheduleMidnightUpdate() {
         const now = new Date();
-        const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1) - now;
+        const msUntilMidnight =
+            new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1) - now;
+
         setTimeout(function () {
-          atualizarIdades();
-          scheduleMidnightUpdate();
+            atualizarIdades();
+            scheduleMidnightUpdate();
         }, msUntilMidnight + 1000);
-      }());
-    });
-  
-    // também reinicializa se o usuário redimensionar a tela (troca mobile <> desktop)
-    window.addEventListener('resize', function () {
-      setupFlip();
-    });
-  
-  }());
-  
+    }());
+});
+
+// Reaplica comportamentos ao redimensionar
+window.addEventListener('resize', setupFlip);
