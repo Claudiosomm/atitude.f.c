@@ -146,6 +146,10 @@ h1{
     text-align: center;
 }
 
+p{
+    text-align: center;
+}
+
 /* underline neon moderno */
 nav a::after {
     content: "";
@@ -588,4 +592,5 @@ footer {
 .card.virado {
     transform: rotateY(180deg);
 }
+
 
