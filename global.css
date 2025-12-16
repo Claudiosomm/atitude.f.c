@@ -150,13 +150,47 @@ p{
     text-align: center;
 }
 
-.jogadores{
-    padding-bottom: 20px;
+/* Centraliza o card */
+.artilheiros {
+    display: flex;
+    justify-content: center;
 }
 
-.artilharia{
-    padding-top: 30px;
-    padding-bottom: 30px;
+/* Card padrão dourado */
+.jogadores {
+    width: 100%;
+    max-width: 320px;
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 204, 0, 0.25);
+    border-radius: 14px;
+    backdrop-filter: blur(4px);
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform .3s ease, box-shadow .3s ease;
+
+    text-align: left;
+    display: grid;
+    gap: 6px;
+}
+
+/* Hover igual às galerias */
+.jogadores:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
+}
+
+/* Texto interno */
+.jogadores em {
+    font-style: normal;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Remove linha do último */
+.jogadores em:last-child {
+    border-bottom: none;
 }
 
 /* underline neon moderno */
@@ -601,6 +635,5 @@ footer {
 .card.virado {
     transform: rotateY(180deg);
 }
-
 
 
