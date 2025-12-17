@@ -2,80 +2,77 @@
    LIGHTBOX COM NAVEGAÇÃO
 ======================================= */
 const imagens = document.querySelectorAll('.foto-galeria');
-let indiceAtual = 0;
 
-const lightbox = document.createElement('div');
-lightbox.id = 'lightbox';
+if (imagens.length > 0) {
+    let indiceAtual = 0;
 
-const imgGrande = document.createElement('img');
-imgGrande.id = "lightbox-img";
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
 
-const btnPrev = document.createElement('div');
-btnPrev.id = "btn-prev";
-btnPrev.classList.add("lightbox-btn");
-btnPrev.innerHTML = "&#10094;";
+    const imgGrande = document.createElement('img');
+    imgGrande.id = "lightbox-img";
 
-const btnNext = document.createElement('div');
-btnNext.id = "btn-next";
-btnNext.classList.add("lightbox-btn");
-btnNext.innerHTML = "&#10095;";
+    const btnPrev = document.createElement('div');
+    btnPrev.id = "btn-prev";
+    btnPrev.classList.add("lightbox-btn");
+    btnPrev.innerHTML = "&#10094;";
 
-lightbox.appendChild(imgGrande);
-lightbox.appendChild(btnPrev);
-lightbox.appendChild(btnNext);
-document.body.appendChild(lightbox);
+    const btnNext = document.createElement('div');
+    btnNext.id = "btn-next";
+    btnNext.classList.add("lightbox-btn");
+    btnNext.innerHTML = "&#10095;";
 
-imagens.forEach((img, index) => {
-    img.addEventListener('click', () => {
-        indiceAtual = index;
-        mostrarImagem();
-        lightbox.classList.add('ativo');
+    lightbox.appendChild(imgGrande);
+    lightbox.appendChild(btnPrev);
+    lightbox.appendChild(btnNext);
+    document.body.appendChild(lightbox);
+
+    imagens.forEach((img, index) => {
+        img.addEventListener('click', () => {
+            indiceAtual = index;
+            mostrarImagem();
+            lightbox.classList.add('ativo');
+        });
     });
-});
 
-function mostrarImagem() {
-    imgGrande.src = imagens[indiceAtual].src;
-}
-
-btnNext.addEventListener('click', (e) => {
-    e.stopPropagation();
-    indiceAtual = (indiceAtual + 1) % imagens.length;
-    mostrarImagem();
-});
-
-btnPrev.addEventListener('click', (e) => {
-    e.stopPropagation();
-    indiceAtual = (indiceAtual - 1 + imagens.length) % imagens.length;
-    mostrarImagem();
-});
-
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        lightbox.classList.remove('ativo');
+    function mostrarImagem() {
+        imgGrande.src = imagens[indiceAtual].src;
     }
-});
 
+    btnNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        indiceAtual = (indiceAtual + 1) % imagens.length;
+        mostrarImagem();
+    });
+
+    btnPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        indiceAtual = (indiceAtual - 1 + imagens.length) % imagens.length;
+        mostrarImagem();
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.classList.remove('ativo');
+        }
+    });
+}
 
 /* ======================================================
    FLIP DOS JOGADORES (PC = hover / CELULAR = clique)
 ====================================================== */
-
-// Detecta celular
 function isMobile() {
     return window.innerWidth <= 768;
 }
 
-// Configura o flip
 function setupFlip() {
     const cards = document.querySelectorAll(".card");
+    if (cards.length === 0) return;
 
     cards.forEach(card => {
-
-        // Evita duplicar listeners
         if (card.__flipInitialized) return;
         card.__flipInitialized = true;
 
-        // PC → hover
         card.addEventListener("mouseenter", () => {
             if (!isMobile()) card.classList.add("virado");
         });
@@ -84,26 +81,20 @@ function setupFlip() {
             if (!isMobile()) card.classList.remove("virado");
         });
 
-        // Celular → clique
         card.addEventListener("click", function (e) {
             if (!isMobile()) return;
 
             const jaVirado = this.classList.contains("virado");
 
-            // Desvirar todos antes
             document.querySelectorAll(".card.virado").forEach(c => {
                 if (c !== this) c.classList.remove("virado");
             });
 
-            // Alternar o atual
-            if (jaVirado) this.classList.remove("virado");
-            else this.classList.add("virado");
-
+            this.classList.toggle("virado", !jaVirado);
             e.stopPropagation();
         });
     });
 
-    // Clique fora → desvirar tudo no celular
     document.addEventListener('click', function (e) {
         if (!isMobile()) return;
 
@@ -113,7 +104,6 @@ function setupFlip() {
         }
     });
 }
-
 
 /* =======================================
    CÁLCULO AUTOMÁTICO DE IDADE
@@ -134,15 +124,13 @@ function calcularIdade(dataNasc) {
     const mes = hoje.getMonth() - nasc.getMonth();
 
     if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())) idade--;
-
     return idade;
 }
 
 function atualizarIdades() {
     document.querySelectorAll('.idade[data-nasc]').forEach(span => {
         const data = span.getAttribute('data-nasc');
-        const idade = calcularIdade(data);
-        span.textContent = idade || '—';
+        span.textContent = calcularIdade(data) || '—';
     });
 
     document.querySelectorAll('.data-nascimento[data-nasc]').forEach(span => {
@@ -150,34 +138,48 @@ function atualizarIdades() {
         if (!isValidDateString(data)) return;
 
         const d = new Date(data);
-        const dia = String(d.getDate()).padStart(2, '0');
-        const mes = String(d.getMonth() + 1).padStart(2, '0');
-        const ano = d.getFullYear();
-
-        span.textContent = `${dia}/${mes}/${ano}`;
+        span.textContent =
+            `${String(d.getDate()).padStart(2, '0')}/` +
+            `${String(d.getMonth() + 1).padStart(2, '0')}/` +
+            d.getFullYear();
     });
 }
 
+/* =======================================
+   MENU HAMBURGER
+======================================= */
+const menuToggle = document.querySelector('.menu-toggle');
+const menuSite = document.querySelector('.menu-site');
+
+if (menuToggle && menuSite) {
+    menuToggle.addEventListener('click', () => {
+        menuSite.classList.toggle('ativo');
+    });
+
+    menuSite.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuSite.classList.remove('ativo');
+        });
+    });
+}
 
 /* =======================================
    INICIALIZAÇÃO
 ======================================= */
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     setupFlip();
     atualizarIdades();
 
-    // Atualiza automáticamente à meia-noite
-    (function scheduleMidnightUpdate() {
-        const now = new Date();
-        const msUntilMidnight =
-            new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1) - now;
+    (function atualizarMeiaNoite() {
+        const agora = new Date();
+        const ms =
+            new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() + 1) - agora;
 
-        setTimeout(function () {
+        setTimeout(() => {
             atualizarIdades();
-            scheduleMidnightUpdate();
-        }, msUntilMidnight + 1000);
-    }());
+            atualizarMeiaNoite();
+        }, ms + 1000);
+    })();
 });
 
-// Reaplica comportamentos ao redimensionar
 window.addEventListener('resize', setupFlip);
