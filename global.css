@@ -291,7 +291,7 @@ footer {
 }
 
 /* Media Query: Aplica 2 colunas para telas a partir de 768px */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .galeria-videos {
         grid-template-columns: 1fr 1fr; 
     }
@@ -719,3 +719,4 @@ footer {
         padding: 12px 0;      /* menu mais compacto */
     }
 }
+
