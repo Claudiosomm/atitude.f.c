@@ -78,6 +78,10 @@ header {
     justify-content: space-between;
 }
 
+.header-content {
+    position: relative;
+}
+
 /* ======================================
         ESCUDO ANIMADO PREMIUM
 ====================================== */
@@ -636,4 +640,82 @@ footer {
     transform: rotateY(180deg);
 }
 
+/* ======================================
+   MENU HAMBURGER – SOMENTE CELULAR
+====================================== */
 
+.menu-toggle {
+    display: none;
+    font-size: 32px;
+    background: none;
+    border: none;
+    color: var(--amarelo);
+    cursor: pointer;
+}
+
+/* Mantém menu normal no desktop */
+.menu-site {
+    display: flex;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+        z-index: 200;
+    }
+
+    .menu-site {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        backdrop-filter: blur(8px);
+        padding: 20px 0;
+
+        display: none;
+        text-align: center;
+        border-top: 1px solid rgba(255,204,0,0.3);
+    }
+
+    .menu-site.ativo {
+        display: flex;
+    }
+
+    .menu-site a {
+        margin: 15px 0;
+        font-size: 1.3rem;
+    }
+}
+
+/* ======================================
+   AJUSTE FINO – TAMANHO DO MENU
+   (SEM QUEBRAR NADA)
+====================================== */
+
+/* MENU DESKTOP */
+.menu-site a {
+    font-size: 1rem;          /* antes estava grande */
+    margin-left: 18px;        /* menos espaçamento */
+}
+
+/* BOTÃO HAMBURGER */
+.menu-toggle {
+    font-size: 26px;          /* mais discreto */
+}
+
+/* MENU MOBILE */
+@media (max-width: 768px) {
+
+    .menu-site a {
+        font-size: 1.1rem;    /* menor que antes */
+        margin: 10px 0;       /* menos altura */
+    }
+
+    .menu-site {
+        padding: 12px 0;      /* menu mais compacto */
+    }
+}
