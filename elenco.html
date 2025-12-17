@@ -15,15 +15,22 @@
 
 <body>
 
-<header>
+<header class="header-site">
     <div class="header-content">
 
         <div class="globo-escudo">
-            <img src="escudo.jpeg" class="frente">
+            <img src="escudo.jpeg" alt="Escudo Atitude F.C.">
         </div>
 
-        <nav>
+        <!-- BOTÃO HAMBURGUER (só no celular) -->
+        <button class="menu-toggle" aria-label="Abrir menu">
+            ☰
+        </button>
+
+        <!-- MENU ORIGINAL (preservado) -->
+        <nav class="menu-site">
             <a href="index.html">Home</a>
+            <a href="elenco.html">Fotos</a>
             <a href="jogos.html">Jogos</a>
             <a href="videos.html">Vídeos</a>
             <a href="jogadores.html">Elenco</a>
@@ -31,6 +38,7 @@
 
     </div>
 </header>
+
 
 <section class="titulo-pagina">
     <h1>Fotos</h1>
@@ -599,9 +607,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.4.0/dist/simple-lightbox.min.js"></script>
 
-<script>
-    new SimpleLightbox('.lightbox');
-</script>
+<script src="java.js"></script>>
 
 </body>
 </html>
