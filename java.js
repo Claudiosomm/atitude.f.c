@@ -183,3 +183,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('resize', setupFlip);
+
+/* ======================================
+   MENU ATIVO AUTOMÁTICO
+====================================== */
+document.addEventListener("DOMContentLoaded", () => {
+    const linksMenu = document.querySelectorAll(".menu-site a");
+    const paginaAtual = window.location.pathname.split("/").pop();
+
+    linksMenu.forEach(link => {
+        const href = link.getAttribute("href");
+
+        if (
+            href === paginaAtual ||
+            (href === "index.html" && paginaAtual === "")
+        ) {
+            link.classList.add("ativo");
+        }
+    });
+});
