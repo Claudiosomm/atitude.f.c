@@ -720,3 +720,21 @@ footer {
     }
 }
 
+/* MENU MOBILE – OPÇÃO 1 */
+@media (max-width: 768px) {
+    .menu-site {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        padding: 20px 0;
+        display: none;
+    }
+
+    .menu-site.ativo {
+        display: flex;
+    }
+}
+
