@@ -772,5 +772,104 @@ p {
     }
 }
 
+/* ================================
+   MENU – MICRO ANIMAÇÕES PREMIUM
+================================ */
+
+/* Links do menu */
+.menu-site a {
+    position: relative;
+    padding: 8px 4px;
+    transition: 
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* Linha animada */
+.menu-site a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: var(--amarelo);
+    transform: translateX(-50%);
+    transition: width 0.25s ease;
+    border-radius: 2px;
+}
+
+/* Hover desktop */
+.menu-site a:hover {
+    color: var(--amarelo);
+    transform: translateY(-2px);
+}
+
+.menu-site a:hover::after {
+    width: 100%;
+}
+
+/* Mobile – remove efeito de "pulo" */
+@media (max-width: 1024px) {
+    .menu-site a:hover {
+        transform: none;
+    }
+}
+
+/* ================================
+   HEADER – REFINO PREMIUM
+================================ */
+
+.header-site {
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.6)
+    );
+    backdrop-filter: blur(6px);
+}
+
+/* Conteúdo do header mais equilibrado */
+.header-content {
+    min-height: 80px;
+}
+
+/* Escudo mais integrado */
+.globo-escudo img {
+    width: 72px;
+    height: 72px;
+    border-width: 2px;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
+}
+
+/* Animação um pouco mais sutil */
+@keyframes girar {
+    from { transform: rotateY(0); }
+    to   { transform: rotateY(360deg); }
+}
+
+/* Mobile – respiro melhor */
+@media (max-width: 1024px) {
+    .header-content {
+        padding: 10px 16px;
+    }
+
+    .globo-escudo img {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+/* ======================================
+   MENU – ITEM ATIVO (PÁGINA ATUAL)
+====================================== */
+.menu-site a.ativo {
+    color: var(--amarelo);
+    font-weight: bold;
+}
+
+.menu-site a.ativo::after {
+    width: 100%;
+}
 
 
