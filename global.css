@@ -720,24 +720,6 @@ footer {
     }
 }
 
-/* MENU MOBILE – OPÇÃO 1 */
-@media (max-width: 768px) {
-    .menu-site {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 100%;
-        flex-direction: column;
-        background: rgba(0,0,0,0.95);
-        padding: 20px 0;
-        display: none;
-    }
-
-    .menu-site.ativo {
-        display: flex;
-    }
-}
-
 /* ======================================
    REFINO VISUAL – TIPOGRAFIA
 ====================================== */
@@ -872,4 +854,67 @@ p {
     width: 100%;
 }
 
+/* ======================================
+   MENU – MICROANIMAÇÃO PREMIUM
+====================================== */
 
+.menu-site a {
+    transition:
+        color 0.3s ease,
+        transform 0.25s ease,
+        text-shadow 0.25s ease;
+}
+
+/* efeito ao passar o mouse (PC) */
+.menu-site a:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 4px 12px rgba(255, 204, 0, 0.45);
+}
+
+/* item ativo fica levemente elevado */
+.menu-site a.ativo {
+    transform: translateY(-1px);
+}
+
+/* ======================================
+   MENU MOBILE – ANIMAÇÃO SUAVE (PASSO 5)
+====================================== */
+
+@media (max-width: 1024px) {
+
+    .menu-site {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        backdrop-filter: blur(8px);
+
+        padding: 0;
+        text-align: center;
+        border-top: 1px solid rgba(255,204,0,0.3);
+
+        /* animação */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+
+    .menu-site.ativo {
+        max-height: 400px; /* altura suficiente para os links */
+    }
+
+    .menu-site a {
+        padding: 14px 0;
+        font-size: 1.15rem;
+        opacity: 0;
+        transform: translateY(-5px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .menu-site.ativo a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
