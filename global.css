@@ -738,3 +738,39 @@ footer {
     }
 }
 
+/* ======================================
+   REFINO VISUAL – TIPOGRAFIA
+====================================== */
+
+body {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+/* Títulos mais fortes */
+h1, h2, h3 {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Parágrafos mais confortáveis */
+p {
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+/* Menu mais profissional */
+.menu-site a {
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+/* Mobile – leitura melhor */
+@media (max-width: 768px) {
+    p {
+        font-size: 0.95rem;
+    }
+}
+
+
+
