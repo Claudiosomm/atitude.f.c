@@ -152,6 +152,8 @@ h1{
 
 p{
     text-align: center;
+    hyphens: auto;       /* Hifeniza automaticamente, se necessário */
+    word-break: break-word; /* Quebra palavras longas se precisar */
 }
 
 /* Centraliza o card */
