@@ -935,3 +935,21 @@ p {
         transform: translateY(0);
     }
 }
+
+/* GRID PARA AS TABELAS */
+.tabelas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* PC: 2 colunas */
+    gap: 30px;
+    justify-items: center; /* Mantém centralizado */
+    margin-top: 20px;
+}
+
+/* CELULAR: 1 por linha */
+@media (max-width: 768px) {
+    .tabelas-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
