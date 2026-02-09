@@ -808,10 +808,24 @@ function fecharCTA(){
 
 <script src="java.js"></script>
 
-
 <footer>
     &trade; Site criado pelo Cláudio para o Atitude F.C.
 </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.4.0/dist/simple-lightbox.min.js"></script>
+
+<script>
+    
+var lightbox = new SimpleLightbox('.galeria a', {
+    captions: true,
+    captionSelector: 'img',
+    captionType: 'attr',
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    nav: true
+});
+</script>
+
 </body>
 </html>
+
