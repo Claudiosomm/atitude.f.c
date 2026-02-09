@@ -41,6 +41,88 @@
 
 </head>
 
+<div class="cta-patrocinador" id="ctaPatro">
+    <span class="fechar" onclick="fecharCTA()">×</span>
+
+    <strong class="titulo">Apoie o Atitude F.C.</strong>
+
+    <p>Seja patrocinador e tenha sua marca divulgada em jogos e redes sociais.</p>
+
+    <a href="https://www.instagram.com/atitude.futebol.club" target="_blank">
+        Falar no Instagram
+    </a>
+</div>
+
+<style>
+.cta-patrocinador{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 270px;
+    background: #111;
+    color: #fff;
+    padding: 18px 16px 16px 16px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    font-size: 14px;
+    z-index: 9999;
+    animation: subir 0.6s ease;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.titulo{
+    display:block;
+    margin-bottom:6px;
+    color:#ffcc00;
+    font-size:16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cta-patrocinador p{
+    margin: 6px 0 10px 0;
+    line-height: 1.4;
+}
+
+.cta-patrocinador a{
+    display:inline-block;
+    margin-top:6px;
+    padding:8px 14px;
+    background:#ffcc00;
+    color:#000;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    transition: 0.2s;
+}
+
+.cta-patrocinador a:hover{
+    transform: scale(1.05);
+}
+
+.cta-patrocinador .fechar{
+    position:absolute;
+    top:6px;
+    right:10px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:16px;
+}
+
+@keyframes subir{
+    from{transform:translateY(40px); opacity:0;}
+    to{transform:translateY(0); opacity:1;}
+}
+</style>
+
+<script>
+function fecharCTA(){
+    document.getElementById("ctaPatro").style.display="none";
+}
+</script>
+
+
 <body>
 
 <header class="header-site">
