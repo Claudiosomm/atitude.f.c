@@ -44,89 +44,7 @@
     </script>
 </head>
 
-<div class="cta-patrocinador" id="ctaPatro">
-    <span class="fechar" onclick="fecharCTA()">×</span>
-
-    <strong class="titulo">Apoie o Atitude F.C.</strong>
-
-    <p>Seja patrocinador e tenha sua marca divulgada em jogos e redes sociais.</p>
-
-    <a href="https://www.instagram.com/atitude.futebol.club" target="_blank">
-        Falar no Instagram
-    </a>
-</div>
-
-<style>
-.cta-patrocinador{
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    max-width: 270px;
-    background: #111;
-    color: #fff;
-    padding: 18px 16px 16px 16px;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    font-size: 14px;
-    z-index: 9999;
-    animation: subir 0.6s ease;
-    text-align: center;
-    font-family: Arial, sans-serif;
-}
-
-.titulo{
-    display:block;
-    margin-bottom:6px;
-    color:#ffcc00;
-    font-size:16px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.cta-patrocinador p{
-    margin: 6px 0 10px 0;
-    line-height: 1.4;
-}
-
-.cta-patrocinador a{
-    display:inline-block;
-    margin-top:6px;
-    padding:8px 14px;
-    background:#ffcc00;
-    color:#000;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:bold;
-    transition: 0.2s;
-}
-
-.cta-patrocinador a:hover{
-    transform: scale(1.05);
-}
-
-.cta-patrocinador .fechar{
-    position:absolute;
-    top:6px;
-    right:10px;
-    cursor:pointer;
-    font-weight:bold;
-    font-size:16px;
-}
-
-@keyframes subir{
-    from{transform:translateY(40px); opacity:0;}
-    to{transform:translateY(0); opacity:1;}
-}
-</style>
-
-<script>
-function fecharCTA(){
-    document.getElementById("ctaPatro").style.display="none";
-}
-</script>
-
-
-<body>
+<body>  
 
 <header class="header-site">
     <div class="header-content">
@@ -144,7 +62,9 @@ function fecharCTA(){
             <a href="videos.html">Vídeos</a>
             <a href="jogadores.html">Elenco</a>
         </nav>
+
     </div>
+
 </header>
 
 <section>
@@ -162,10 +82,9 @@ function fecharCTA(){
         <div class="tabela-grid">
             <h1>Saldo de gols 2026</h1>
             <div class="jogadores">
-                <em>Jogos - 4</em>
-                <em>Vitórias - 3</em>
-                <em>Empates - 1 </em>
-                <em>Derrotas - 0</em>
+                <em>jogos - 4</em>
+                <em>vitórias - 3</em>
+                <em>Empates - 1</em>
                 <em>Gols feitos - 10</em>
                 <em>Gols cedidos - 5</em>
                 <em>Saldo de gols - 5</em>
@@ -206,21 +125,6 @@ function fecharCTA(){
 </section>
 
     <div class="galeria">
-
-        <div class="imagem-container">
-            <a href="jogo08022026.jpeg" class="lightbox">
-                <img src="jogo08022026.jpeg" alt="jogo 01/02/2026">
-            </a>
-            <p style="margin-top: 10px;">Jogão de bola, com time forte, mas a vitória veio para o melhor.</p>
-        </div>
-
-         <div class="imagem-container">
-            <a href="jogo2501.jpg" class="lightbox">
-                <img src="jogo2501.jpg" alt="jogo 25/01/2026">
-            </a>
-            <p style="margin-top: 10px;">Jogo difícil mas a vitória veio.</p>
-        </div>
-
 
         <div class="imagem-container">
             <a href="jogo010226.jpeg" class="lightbox">
@@ -351,39 +255,74 @@ function fecharCTA(){
     </div>
 </section>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target); // impede de encolher novamente
+            }
+        });
+    }, { threshold: 0.2 });
+
+    items.forEach(item => observer.observe(item));
+});
+</script>
+
 <!-- BLOCO PATROCINADOR -->
 <section class="patrocinador" style="margin:40px auto; max-width:900px; text-align:center;">
-    <h2>Seja nosso patrocinador</h2>
-    <p>
-        O Atitude Futebol Clube está em constante crescimento e aberto a novas parcerias.
-        Sua marca pode estar presente em uniformes, redes sociais e eventos esportivos.
-    </p>
-    <p>
-        Entre em contato pelo nosso Instagram oficial e faça parte da nossa história.
-    </p>
+  <h2>Seja nosso patrocinador</h2>
+  <p>
+    O Atitude Futebol Clube está em constante crescimento e aberto a novas parcerias.
+    Sua marca pode estar presente em uniformes, redes sociais e eventos esportivos.
+  </p>
+  <p>
+    Entre em contato pelo Instagram oficial e faça parte da nossa história.
+  </p>
 </section>
 
 <section class="social-media">
-    <div class="social-icons">
-        <a href="https://www.instagram.com/atitude.futebol.club" target="_blank" class="icon-link instagram">
-            <span class="icon">📸</span> Instagram
-        </a>
-        <a href="https://www.tiktok.com/@atitude.futebol.cl" target="_blank" class="icon-link tiktok">
-            <span class="icon">🎶</span> TikTok
-        </a>
-    </div>
+  <div class="social-icons">
+      <a href="https://www.instagram.com/atitude.futebol.club?igsh=bzYzb2xxOXd3bGl2" target="_blank" class="icon-link instagram">
+          <span class="icon">📸</span> Instagram
+      </a>
+      <a href="https://www.tiktok.com/@atitude.futebol.cl?_r=1&_t=ZS-91v3CPwP8qb" target="_blank" class="icon-link tiktok">
+          <span class="icon">🎶</span> TikTok
+      </a>
+  </div>
 </section>
 
-<script src="java.js"></script>
-
-
-<footer>
-    &trade; Site criado pelo Cláudio para o Atitude F.C.
+<footer class="footer-site">
+    <p>© Atitude Futebol Clube — Bela Vista</p>
+    <p>Site criado por Cláudio</p>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.4.0/dist/simple-lightbox.min.js"></script>
+
+<script>
+new SimpleLightbox('.lightbox');
+</script>
+
+<script>
+function fecharCTA(){
+    document.getElementById("ctaPatro").style.display="none";
+}
+</script>
+
+<script>
+const toggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.menu-site');
+
+if(toggle){
+    toggle.addEventListener('click', () => {
+        menu.classList.toggle('ativo');
+    });
+}
+</script>
+
 
 </body>
 </html>
-
-
-
-
