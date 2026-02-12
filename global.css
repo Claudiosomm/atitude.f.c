@@ -12,732 +12,6 @@
 }
 
 /* ======================================
-        RESET
-====================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-    background: var(--fundo);
-    color: var(--branco);
-    overflow-x: hidden;
-
-    /* efeito fade-in global */
-    opacity: 0;
-    animation: fadeInBody 1s ease forwards;
-}
-
-/* Fade-in suave da página inteira */
-@keyframes fadeInBody {
-    from { opacity: 10; }
-    to { opacity: 10; }
-}
-
-/* ======================================
-        BACKGROUND PARALLAX SUAVE
-====================================== */
-body::before {
-    content: "";
-    position: fixed;
-    top: -20px;
-    left: -20px;
-    width: 120%;
-    height: 120%;
-    background: url("selecao.jpeg") center/cover no-repeat;
-    opacity: 0.08;
-    z-index: -1;
-
-    /* parallax */
-    transform: translateY(var(--scroll, 0));
-    will-change: transform;
-}
-
-/* ======================================
-        HEADER
-====================================== */
-header {
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(8px);
-    border-bottom: 2px solid rgba(255, 204, 0, 0.3);
-    padding: 15px 0;
-    box-shadow: 0 0 18px rgba(255, 204, 0, 0.25);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-content {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.header-content {
-    position: relative;
-}
-
-/* ======================================
-        ESCUDO ANIMADO PREMIUM
-====================================== */
-.globo-escudo {
-    position: relative;
-    width: 80px;
-}
-
-.globo-escudo img {
-    width: 100%;
-    border-radius: 50%;
-    border: 3px solid var(--amarelo);
-    animation: brilhoEscudo 3s ease-in-out infinite alternate;
-    animation: girar 4s linear infinite;
-}
-
-/* Garantir que o escudo fique totalmente redondo */
-.globo-escudo img {
-    width: 120px;     /* pode ajustar */
-    height: 120px;    /* manter igual para não deformar */
-    border-radius: 50%;
-    object-fit: cover;   /* mantém a imagem proporcional */
-}
-
-
-.logo-animada img {
-    width: 120px;
-    height: auto;
-    animation: girar 4s linear infinite;
-    transform-style: preserve-3d;
-}
-
-@keyframes girar {
-    0% {
-        transform: rotateY(0deg);
-    }
-    100% {
-        transform: rotateY(360deg);
-    }
-}
-
-/* efeito glow de luxo */
-@keyframes brilhoEscudo {
-    0% {
-        filter: drop-shadow(0 0 5px var(--amarelo));
-    }
-    100% {
-        filter: drop-shadow(0 0 15px var(--amarelo-claro));
-    }
-}
-
-/* ======================================
-        MENU / NAVEGAÇÃO
-====================================== */
-nav a {
-    color: var(--branco);
-    margin-left: 25px;
-    text-decoration: none;
-    font-size: 1.15rem;
-    padding-bottom: 5px;
-    position: relative;
-    transition: color .3s ease;
-}
-
-h1{
-    text-align: center;
-}
-
-p{
-    text-align: center;
-    hyphens: auto;       /* Hifeniza automaticamente, se necessário */
-    word-break: break-word; /* Quebra palavras longas se precisar */
-}
-
-/* Centraliza o card */
-.artilheiros {
-    display: flex;
-    justify-content: center;
-}
-
-/* Card padrão dourado */
-.jogadores {
-    width: 100%;
-    max-width: 320px;
-    padding: 20px;
-
-    background: rgba(255, 255, 255, 0.04);
-    border: 2px solid rgba(255, 204, 0, 0.25);
-    border-radius: 14px;
-    backdrop-filter: blur(4px);
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform .3s ease, box-shadow .3s ease;
-
-    text-align: left;
-    display: grid;
-    gap: 6px;
-}
-
-/* Hover igual às galerias */
-.jogadores:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
-}
-
-/* Texto interno */
-.jogadores em {
-    font-style: normal;
-    padding: 4px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Remove linha do último */
-.jogadores em:last-child {
-    border-bottom: none;
-}
-
-/* underline neon moderno */
-nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0%;
-    height: 2px;
-    background: var(--amarelo);
-    box-shadow: 0 0 8px var(--amarelo);
-    transition: width .3s ease;
-}
-
-nav a:hover {
-    color: var(--amarelo);
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-/* ======================================
-        SEÇÕES INTERNAS
-====================================== */
-section, .container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-/* ===== ANIMAÇÃO APENAS PARA CELULAR ===== */
-@media (max-width: 768px) {
-    .reveal {
-        transform: scale(0.3);
-        opacity: 0;
-        transition: all 0.6s ease-out;
-    }
-
-    .reveal.visible {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-
-/* ======================================
-        GALERIA (Fotos e Jogos)
-====================================== */
-.galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-    padding: 20px;
-}
-
-.imagem-container {
-    background: rgba(255, 255, 255, 0.04);
-    border: 2px solid rgba(255, 204, 0, 0.25);
-    border-radius: 14px;
-    padding: 12px;
-    transition: transform .3s ease, box-shadow .3s ease;
-    backdrop-filter: blur(4px);
-}
-
-.imagem-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
-}
-
-.imagem-container img {
-    width: 100%;
-    border-radius: 12px;
-    border: 1px solid var(--amarelo);
-}
-
-/* ======================================
-        RODAPÉ
-====================================== */
-footer {
-    margin-top: 60px;
-    text-align: center;
-    padding: 15px;
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(8px);
-    border-top: 2px solid rgba(255, 204, 0, 0.35);
-    color: var(--amarelo-claro);
-    font-size: 1rem;
-}
-
-/* --- Estilos da Página de Vídeos com GRID RESPONSIVO --- */
-
-/* Container geral (limita a largura máxima no desktop e centraliza) */
-.container-videos {
-    max-width: 1200px; 
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-}
-
-/* 1. LAYOUT DE GRADE RESPONSIVO */
-.galeria-videos {
-    display: grid;
-    /* Padrão para celular: 1 coluna */
-    grid-template-columns: 1fr;
-    gap: 30px; 
-    margin-top: 30px;
-}
-
-/* Media Query: Aplica 2 colunas para telas a partir de 768px */
-@media (min-width: 1024px) {
-    .galeria-videos {
-        grid-template-columns: 1fr 1fr; 
-    }
-}
-
-/* 2. RESPONSIVIDADE DO VÍDEO (CAIXA ELÁSTICA 16:9) */
-.video-responsivo {
-    position: relative;
-    width: 100%; 
-    /* Esta linha é a "mágica" para forçar a proporção 16:9, sem altura fixa */
-    padding-bottom: 56.25%; 
-    height: 0;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    background-color: #000;
-}
-
-.video-responsivo iframe {
-    /* Força o iframe a preencher 100% da "caixa elástica" */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;  
-    height: 100%; 
-    border: 0;
-}
-
-.card-video h3 {
-    margin-top: 10px;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-/* ======================================
-        VÍDEOS – CAIXAS DOURADAS
-====================================== */
-
-.container-videos h2 {
-    text-align: center;
-    margin: 30px 0;
-    font-size: 28px;
-    letter-spacing: 1px;
-}
-
-/* GRID IGUAL À GALERIA DAS FOTOS */
-.galeria-videos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 20px;
-}
-
-/* CARD COM O MESMO ESTILO DOURADO */
-.card-video {
-    background: rgba(255, 255, 255, 0.04);
-    border: 2px solid rgba(255, 204, 0, 0.25);
-    border-radius: 14px;
-    padding: 12px;
-    transition: transform .3s ease, box-shadow .3s ease;
-    backdrop-filter: blur(4px);
-    text-align: center;
-}
-
-.card-video:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
-}
-
-/* TÍTULO ABAIXO DO VÍDEO */
-.card-video h3 {
-    font-size: 17px;
-    font-weight: normal;
-    margin-top: 10px;
-    color: var(--branco);
-}
-
-/* VÍDEO RESPONSIVO */
-.video-responsivo {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* proporção 16:9 */
-    overflow: hidden;
-    border-radius: 12px;
-    border: 1px solid var(--amarelo);
-}
-
-.video-responsivo iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* AJUSTE NO CELULAR */
-@media (max-width: 480px) {
-    .card-video h3 {
-        font-size: 15px;
-    }
-}
-
-.data-nascimento {
-    display: none;
-}
-
-/* Estilos para a Seção de Mídias Sociais */
-.social-media {
-    text-align: center; /* Centraliza o conteúdo dentro da seção */
-    padding: 20px 0; /* Adiciona algum espaço acima e abaixo */
-    margin-top: 30px; /* Espaço para separar da seção anterior */
-    border-top: 1px solid #ccc; /* Linha sutil para separar do conteúdo */
-}
-
-.social-icons {
-    display: flex; /* Permite alinhar os links lado a lado */
-    justify-content: center; /* Centraliza os links na horizontal */
-    gap: 30px; /* Espaço entre os links */
-}
-
-.icon-link {
-    text-decoration: none; /* Remove o sublinhado padrão */
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 8px;
-    transition: background-color 0.3s, transform 0.3s;
-    display: flex;
-    align-items: center;
-}
-
-.icon-link:hover {
-    transform: translateY(-2px); /* Efeito sutil ao passar o mouse */
-    opacity: 0.9;
-}
-
-.icon {
-    font-size: 1.3rem; /* Tamanho do emoji/ícone */
-    margin-right: 8px; /* Espaço entre o ícone e o texto */
-}
-
-/* Estilos Específicos por Rede */
-.instagram {
-    color: white; /* Cor do texto */
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.tiktok {
-    color: white;
-    background-color: #000000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 2px 2px #25F4EE, -2px -2px #FF0050; /* Efeito de sombra do TikTok */
-}
-
-/* GRID DA PÁGINA */
-.jogadores-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 por linha no PC */
-    gap: 30px;
-    padding: 30px;
-}
-
-/* Caixa que mantém tudo do mesmo tamanho */
-.card-box {
-    width: 100%;
-    height: 420px;            /* altura fixa */
-    background: #000;         /* fundo para destaque */
-    border-radius: 12px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* CARD 3D */
-.card {
-    width: 100%;
-    height: 100%;
-    perspective: 1000px;
-}
-
-.card-inner {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.card-box:hover .card-inner {
-    transform: rotateY(180deg);
-}
-
-/* Frente e verso */
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-/* Foto ajustada SEM cortar jogador */
-.card-front img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;  /* ❤️ NÃO CORTA A FOTO */
-    background: #000;
-}
-
-/* Verso */
-.card-back {
-    background: #111;
-    color: white;
-    padding: 20px;
-    transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-.card.virado {
-    transform: rotateY(180deg);
-}
-
-/* RESPONSIVO — 1 por linha no celular */
-@media (max-width: 768px) {
-    .jogadores-container {
-        grid-template-columns: 1fr;
-    }
-
-    .card-box {
-        height: 380px; /* reduz um pouco para caber melhor no celular */
-    }
-}
-
-/* ======================================
-      CARTÕES DOS JOGADORES (ajustados para combinar com a galeria)
-====================================== */
-
-.jogadores-grid {
-    display: grid;
-    gap: 25px;
-    padding: 20px;
-
-    /* PC: 3 por linha (como você pediu) */
-    grid-template-columns: repeat(3, 1fr);
-}
-
-/* CELULAR: 1 por linha */
-@media (max-width: 768px) {
-    .jogadores-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Container com mesmo estilo das fotos do ELENCO */
-.card-container {
-    perspective: 1000px;
-    width: 100%;
-    max-width: 260px;
-    margin: auto;
-
-    background: rgba(255, 255, 255, 0.04);
-    border: 2px solid rgba(255, 204, 0, 0.25);
-    border-radius: 14px;
-    padding: 12px;
-    backdrop-filter: blur(4px);
-    transition: transform .3s ease, box-shadow .3s ease;
-}
-
-/* CELULAR — ocupa quase toda a tela */
-@media (max-width: 768px) {
-    .card-container {
-        max-width: 90%;   /* deixa larguinha */
-        width: 100%;      /* ocupa toda largura do grid */
-    }
-}
-
-
-.card-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
-}
-
-/* Estrutura da carta */
-.card {
-    position: relative;
-    width: 100%;
-    height: 360px;   /* altura igual ao equilíbrio do elenco */
-    transform-style: preserve-3d;
-    transition: transform .6s ease-in-out;
-}
-
-/* PC – vira ao passar o mouse */
-.card-container:hover .card {
-    transform: rotateY(180deg);
-}
-
-/* CELULAR – vira enquanto o dedo estiver pressionando */
-@media (hover: none) {
-    .card-container:active .card {
-        transform: rotateY(180deg);
-    }
-}
-
-/* Frente e verso */
-.card-front,
-.card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-/* Frente (foto — não corta cabeça!) */
-.card-front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;   /* cobre a área inteira */
-    object-position: top; /* garante cabeça visível */
-
-    border-radius: 12px;
-    border: 1px solid var(--amarelo);
-}
-
-/* Verso */
-.card-back {
-    background: rgb(20, 20, 20);
-    color: white;
-    transform: rotateY(180deg);
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid var(--amarelo);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-.card.virado {
-    transform: rotateY(180deg);
-}
-
-/* ======================================
-   MENU HAMBURGER – SOMENTE CELULAR
-====================================== */
-
-.menu-toggle {
-    display: none;
-    font-size: 32px;
-    background: none;
-    border: none;
-    color: var(--amarelo);
-    cursor: pointer;
-}
-
-/* Mantém menu normal no desktop */
-.menu-site {
-    display: flex;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-    .menu-toggle {
-        display: block;
-        z-index: 200;
-    }
-
-    .menu-site {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 100%;
-        flex-direction: column;
-        background: rgba(0,0,0,0.95);
-        backdrop-filter: blur(8px);
-        padding: 20px 0;
-
-        display: none;
-        text-align: center;
-        border-top: 1px solid rgba(255,204,0,0.3);
-    }
-
-    .menu-site.ativo {
-        display: flex;
-    }
-
-    .menu-site a {
-        margin: 15px 0;
-        font-size: 1.3rem;
-    }
-}
-
-/* ======================================
-   AJUSTE FINO – TAMANHO DO MENU
-   (SEM QUEBRAR NADA)
-====================================== */
-
-/* MENU DESKTOP */
-.menu-site a {
-    font-size: 1rem;          /* antes estava grande */
-    margin-left: 18px;        /* menos espaçamento */
-}
-
-/* BOTÃO HAMBURGER */
-.menu-toggle {
-    font-size: 26px;          /* mais discreto */
-}
-
-/* MENU MOBILE */
-@media (max-width: 768px) {
-
-    .menu-site a {
-        font-size: 1.1rem;    /* menor que antes */
-        margin: 10px 0;       /* menos altura */
-    }
-
-    .menu-site {
-        padding: 12px 0;      /* menu mais compacto */
-    }
-}
-
-/* ======================================
    REFINO VISUAL – TIPOGRAFIA
 ====================================== */
 
@@ -952,4 +226,587 @@ p {
     }
 }
 
+/* ======================================
+        RESET
+====================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: var(--fundo);
+    color: var(--branco);
+    overflow-x: hidden;
+
+    opacity: 0;
+    animation: fadeInBody 1s ease forwards;
+}
+
+/* Fade-in suave */
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ======================================
+        BACKGROUND PARALLAX SUAVE
+====================================== */
+body::before {
+    content: "";
+    position: fixed;
+    top: -20px;
+    left: -20px;
+    width: 120%;
+    height: 120%;
+    background: url("selecao.jpeg") center/cover no-repeat;
+    opacity: 0.08;
+    z-index: -1;
+
+    transform: translateY(var(--scroll, 0));
+    will-change: transform;
+}
+
+
+/* ======================================
+        ESCUDO ANIMADO PREMIUM
+====================================== */
+
+.globo-escudo {
+    position: relative;
+    width: 80px;
+}
+
+.globo-escudo img {
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--amarelo);
+    animation: 
+        brilhoEscudo 3s ease-in-out infinite alternate,
+        girar 4s linear infinite;
+}
+
+@keyframes girar {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+@keyframes brilhoEscudo {
+    from { filter: drop-shadow(0 0 5px var(--amarelo)); }
+    to { filter: drop-shadow(0 0 15px var(--amarelo-claro)); }
+}
+
+
+/* ======================================
+        HEADER
+====================================== */
+header {
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid rgba(255, 204, 0, 0.3);
+    padding: 15px 0;
+    box-shadow: 0 0 18px rgba(255, 204, 0, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* --- Estilos da Página de Vídeos com GRID RESPONSIVO --- */
+/* ======================================
+        VÍDEOS – CAIXAS DOURADAS
+====================================== */
+
+.container-videos h2 {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+/* GRID PADRÃO (CELULAR = 1 COLUNA) */
+.galeria-videos {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 vídeo por linha */
+    gap: 30px; /* espaço igual entre todos */
+    padding: 20px 0;
+}
+
+/* TABLET (2 vídeos) */
+@media (min-width: 768px) {
+    .galeria-videos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* DESKTOP (4 vídeos) */
+@media (min-width: 1200px) {
+    .galeria-videos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+/* CARD DOURADO */
+.card-video {
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 204, 0, 0.25);
+    border-radius: 14px;
+    padding: 12px;
+    transition: transform .3s ease, box-shadow .3s ease;
+    backdrop-filter: blur(4px);
+    text-align: center;
+}
+
+.card-video:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
+}
+
+/* VÍDEO RESPONSIVO 16:9 */
+.video-responsivo {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--amarelo);
+}
+
+.video-responsivo iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* TÍTULO DO CARD */
+.card-video h3 {
+    font-size: 17px;
+    font-weight: normal;
+    margin-top: 10px;
+    color: var(--branco);
+}
+
+/* AJUSTE NO CELULAR */
+@media (max-width: 480px) {
+    .card-video h3 {
+        font-size: 15px;
+    }
+}
+
+/* Container geral (limita a largura máxima no desktop e centraliza) */
+.container-videos {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ======================================
+        GALERIA (Fotos e Jogos)
+====================================== */
+
+/* PADRÃO – CELULAR (1 foto) */
+.galeria {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* DESKTOP – 4 fotos */
+@media (min-width: 1024px) {
+    .galeria {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.imagem-container {
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 204, 0, 0.25);
+    border-radius: 14px;
+    padding: 12px;
+    transition: transform .3s ease, box-shadow .3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.imagem-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
+}
+
+.imagem-container img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid var(--amarelo);
+}
+
+/* ======================================
+        MENU / NAVEGAÇÃO
+====================================== */
+nav a {
+    color: var(--branco);
+    margin-left: 25px;
+    text-decoration: none;
+    font-size: 1.15rem;
+    padding-bottom: 5px;
+    position: relative;
+    transition: color .3s ease;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+    hyphens: auto;       /* Hifeniza automaticamente, se necessário */
+    word-break: break-word; /* Quebra palavras longas se precisar */
+}
+
+/* Centraliza o card */
+.artilheiros {
+    display: flex;
+    justify-content: center;
+}
+
+.jogadores {
+    width: 100%;
+    max-width: 320px;
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 204, 0, 0.25);
+    border-radius: 14px;
+    backdrop-filter: blur(4px);
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform .3s ease, box-shadow .3s ease;
+
+    text-align: left;
+    display: grid;
+    gap: 6px;
+
+    word-break: break-word; /* ← aqui */
+}
+
+/* Hover igual às galerias */
+.jogadores:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
+}
+
+/* Texto interno */
+.jogadores em {
+    font-style: normal;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Remove linha do último */
+.jogadores em:last-child {
+    border-bottom: none;
+}
+
+/* underline neon moderno */
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: var(--amarelo);
+    box-shadow: 0 0 8px var(--amarelo);
+    transition: width .3s ease;
+}
+
+nav a:hover {
+    color: var(--amarelo);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ======================================
+      CARTÕES DOS JOGADORES (ajustados para combinar com a galeria)
+====================================== */
+
+/* GRID RESPONSIVO */
+.jogadores-grid {
+    display: grid;
+    gap: 25px;
+    padding: 20px;
+    grid-template-columns: 1fr;  /* padrão: 1 por linha no celular */
+}
+
+/* Tablet: 2 por linha */
+@media (min-width: 600px) {
+    .jogadores-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* PC: 4 por linha */
+@media (min-width: 1024px) {
+    .jogadores-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Container do card - mesmo estilo das fotos da galeria */
+.card-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 260px; /* compatível com a galeria */
+    margin: auto;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 204, 0, 0.25);
+    border-radius: 14px;
+    padding: 12px;
+    backdrop-filter: blur(4px);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+/* Celular - ocupa quase toda a tela */
+@media (max-width: 768px) {
+    .card-container {
+        max-width: 90%;
+        width: 100%;
+    }
+}
+
+/* Hover igual às galerias */
+.card-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.35);
+}
+
+/* Estrutura do card 3D */
+.card {
+    position: relative;
+    width: 100%;
+    height: 360px;   /* altura equilibrada com a galeria */
+    transform-style: preserve-3d;
+    transition: transform .6s ease-in-out;
+}
+
+/* PC – vira ao passar o mouse */
+.card-container:hover .card {
+    transform: rotateY(180deg);
+}
+
+/* Celular – vira ao tocar */
+@media (hover: none) {
+    .card-container:active .card {
+        transform: rotateY(180deg);
+    }
+}
+
+/* Frente e verso */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Frente (foto — não corta jogador) */
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* cobre a área inteira */
+    object-position: top;   /* garante cabeça visível */
+    border-radius: 12px;
+    border: 1px solid var(--amarelo);
+}
+
+/* Verso */
+.card-back {
+    background: rgb(20, 20, 20);
+    color: white;
+    transform: rotateY(180deg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--amarelo);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Card virado via JS ou hover */
+.card.virado {
+    transform: rotateY(180deg);
+}
+
+/* ======================================
+   MENU HAMBURGER – SOMENTE CELULAR
+====================================== */
+
+/* BOTÃO HAMBURGER – oculto no desktop */
+.menu-toggle {
+    display: none;
+    font-size: 26px;       /* tamanho mais discreto */
+    background: none;
+    border: none;
+    color: var(--amarelo);
+    cursor: pointer;
+    z-index: 200;
+}
+
+/* MENU NORMAL NO DESKTOP */
+.menu-site {
+    display: flex;
+}
+
+.menu-site a {
+    font-size: 1rem;       /* tamanho padrão no desktop */
+    margin-left: 18px;     /* espaçamento mais compacto */
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    /* Exibe o botão hamburger */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Menu oculto por padrão, vertical e full-width */
+    .menu-site {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(8px);
+        padding: 12px 0;       /* compacto */
+        display: none;
+        text-align: center;
+        border-top: 1px solid rgba(255, 204, 0, 0.3);
+    }
+
+    /* Menu ativo exibido */
+    .menu-site.ativo {
+        display: flex;
+    }
+
+    /* Links do menu mobile */
+    .menu-site a {
+        margin: 10px 0;
+        font-size: 1.1rem;     /* tamanho adequado para toque */
+    }
+}
+
+/* ======================================
+        SEÇÕES INTERNAS
+====================================== */
+section, .container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* ===== ANIMAÇÃO APENAS PARA CELULAR ===== */
+@media (max-width: 768px) {
+    .reveal {
+        transform: scale(0.3);
+        opacity: 0;
+        transition: all 0.6s ease-out;
+    }
+
+    .reveal.visible {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ======================================
+        RODAPÉ
+====================================== */
+footer {
+    margin-top: 60px;
+    text-align: center;
+    padding: 15px;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(8px);
+    border-top: 2px solid rgba(255, 204, 0, 0.35);
+    color: var(--amarelo-claro);
+    font-size: 1rem;
+}
+
+.data-nascimento {
+    display: none;
+}
+
+/* Estilos para a Seção de Mídias Sociais */
+.social-media {
+    text-align: center; /* Centraliza o conteúdo dentro da seção */
+    padding: 20px 0; /* Adiciona algum espaço acima e abaixo */
+    margin-top: 30px; /* Espaço para separar da seção anterior */
+    border-top: 1px solid #ccc; /* Linha sutil para separar do conteúdo */
+}
+
+.social-icons {
+    display: flex; /* Permite alinhar os links lado a lado */
+    justify-content: center; /* Centraliza os links na horizontal */
+    gap: 30px; /* Espaço entre os links */
+}
+
+.icon-link {
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.icon-link:hover {
+    transform: translateY(-2px); /* Efeito sutil ao passar o mouse */
+    opacity: 0.9;
+}
+
+.icon {
+    font-size: 1.3rem; /* Tamanho do emoji/ícone */
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+}
+
+/* Estilos Específicos por Rede */
+.instagram {
+    color: white; /* Cor do texto */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tiktok {
+    color: white;
+    background-color: #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 2px 2px #25F4EE, -2px -2px #FF0050; /* Efeito de sombra do TikTok */
+}
 
