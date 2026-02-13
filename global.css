@@ -843,6 +843,8 @@ footer {
     aspect-ratio: 16 / 9;
     border-radius: 12px;
     border: none;
+    pointer-events: auto !important;
+    touch-action: auto !important;
 }
 
 /* botão fechar */
@@ -895,6 +897,8 @@ footer {
 
 }
 
+
+
 .descricao-overlay.visivel {
 
     opacity: 1;
@@ -922,6 +926,7 @@ footer {
 .card-video * {
     pointer-events: none;
 }
+
 
 
 
