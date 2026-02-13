@@ -120,80 +120,67 @@ document.addEventListener('DOMContentLoaded', () => {
         span.textContent = calcularIdade(span.dataset.nasc);
     });
 
-});
-
-
-const toggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.menu-site');
-
-if(toggle){
-    toggle.addEventListener('click', () => {
-        menu.classList.toggle('ativo');
-    });
-}
-
-
-document.addEventListener("DOMContentLoaded", function(){
-
+    /* =======================================
+       OVERLAY DE VÍDEOS (MOBILE + DESKTOP)
+    ======================================= */
     const overlay = document.getElementById("overlayVideo");
     const player = document.getElementById("playerExpandido");
     const fechar = document.getElementById("fecharVideo");
     const descricao = document.getElementById("descricaoExpandida");
-    const cards = document.querySelectorAll(".card-video");
+    const cardsVideo = document.querySelectorAll(".card-video");
 
-    let timeoutDescricao = null;
+    if (overlay && player && fechar && cardsVideo.length > 0) {
+        let timeoutDescricao = null;
 
-    function fecharPlayer() {
-        player.src = "";
-        overlay.style.display = "none";
-        descricao.textContent = "";
-        descricao.classList.remove("visivel");
-        if(timeoutDescricao) clearTimeout(timeoutDescricao);
-    }
+        function fecharPlayer() {
+            player.src = "";
+            overlay.style.display = "none";
+            descricao.textContent = "";
+            descricao.classList.remove("visivel");
+            if (timeoutDescricao) clearTimeout(timeoutDescricao);
+        }
 
-    cards.forEach(card => {
-        // Função unificada para abrir vídeo
-        const abrirVideo = function(e) {
-            // Previne qualquer comportamento padrão
-            if(e) {
+        cardsVideo.forEach(card => {
+            const abrirVideo = function(e) {
                 e.preventDefault();
                 e.stopPropagation();
+
+                const iframe = this.querySelector("iframe");
+                if (!iframe) return;
+
+                const texto = this.querySelector("h3") ? this.querySelector("h3").textContent : "";
+                const url = iframe.src.split("?")[0];
+
+                player.src = url + "?autoplay=1&playsinline=1&enablejsapi=1";
+                descricao.textContent = texto;
+                overlay.style.display = "flex";
+                descricao.classList.add("visivel");
+
+                if (timeoutDescricao) clearTimeout(timeoutDescricao);
+                timeoutDescricao = setTimeout(() => {
+                    descricao.classList.remove("visivel");
+                }, 4000);
+            };
+
+            // Eventos para desktop e mobile
+            card.addEventListener("click", abrirVideo);
+            card.addEventListener("touchstart", abrirVideo, {passive: false});
+        });
+
+        fechar.addEventListener("click", fecharPlayer);
+        fechar.addEventListener("touchstart", fecharPlayer, {passive: false});
+
+        overlay.addEventListener("click", function(e) {
+            if (e.target === overlay) {
+                fecharPlayer();
             }
+        });
 
-            const iframe = this.querySelector("iframe");
-            if (!iframe) return;
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                fecharPlayer();
+            }
+        });
+    }
 
-            const texto = this.querySelector("h3") ? this.querySelector("h3").textContent : "";
-            const url = iframe.src.split("?")[0];
-
-            player.src = url + "?autoplay=1&playsinline=1&enablejsapi=1";
-            descricao.textContent = texto;
-            overlay.style.display = "flex";
-            descricao.classList.add("visivel");
-
-            if(timeoutDescricao) clearTimeout(timeoutDescricao);
-            timeoutDescricao = setTimeout(() => {
-                descricao.classList.remove("visivel");
-            }, 4000);
-        };
-
-        // Adiciona ambos os eventos
-        card.addEventListener("click", abrirVideo);
-        card.addEventListener("touchstart", abrirVideo, {passive: false});
-    });
-
-    fechar.addEventListener("click", fecharPlayer);
-    fechar.addEventListener("touchstart", fecharPlayer, {passive: false});
-
-    overlay.addEventListener("click", function(e){
-        if(e.target === overlay){
-            fecharPlayer();
-        }
-    });
-
-    document.addEventListener("keydown", function(e){
-        if(e.key === "Escape"){
-            fecharPlayer();
-        }
-    });
-});
+}); // Fecha o DOMContentLoaded principal
