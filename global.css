@@ -908,3 +908,20 @@ footer {
     pointer-events: none;
 
 }
+
+/* FIX PARA MOBILE - VÍDEOS */
+.card-video {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Garante que o card inteiro seja clicável no mobile */
+.card-video * {
+    pointer-events: none;
+}
+
+.card-video {
+    pointer-events: auto;
+}
