@@ -1,123 +1,77 @@
-/* =======================================
-   INICIALIZAÇÃO GLOBAL
-======================================= */
-document.addEventListener('DOMContentLoaded', () => {
+<script>
 
-    /* =======================================
-       MENU HAMBURGER (SEGURO)
-    ======================================= */
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menuSite = document.querySelector('.menu-site');
+document.addEventListener("DOMContentLoaded", function(){
 
-    if (menuToggle && menuSite) {
-        menuToggle.addEventListener('click', () => {
-            menuSite.classList.toggle('ativo');
-        });
+    const overlay = document.getElementById("overlayVideo");
+    const player = document.getElementById("playerExpandido");
+    const fechar = document.getElementById("fecharVideo");
+    const descricao = document.getElementById("descricaoExpandida");
 
-        // Fecha menu ao clicar em um link (mobile)
-        menuSite.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuSite.classList.remove('ativo');
-            });
-        });
+    const cards = document.querySelectorAll(".card-video");
+
+    let timeoutDescricao;
+
+    function fecharPlayer(){
+
+        player.src = "";
+        overlay.style.display = "none";
+        descricao.textContent = "";
+
     }
 
-    /* ======================================
-       MENU ATIVO AUTOMÁTICO
-    ====================================== */
-    const linksMenu = document.querySelectorAll(".menu-site a");
-    const paginaAtual = window.location.pathname.split("/").pop();
+    cards.forEach(function(card){
 
-    linksMenu.forEach(link => {
-        const href = link.getAttribute("href");
-        if (
-            href === paginaAtual ||
-            (href === "index.html" && paginaAtual === "")
-        ) {
-            link.classList.add("ativo");
-        }
+        card.addEventListener("click", function(){
+
+            const iframe = card.querySelector("iframe");
+            const texto = card.querySelector("h3").textContent;
+
+            if(!iframe) return;
+
+            const url = iframe.src.split("?")[0];
+
+            player.src = url + "?autoplay=1";
+
+            descricao.textContent = texto;
+
+            overlay.style.display = "flex";
+
+            descricao.classList.add("visivel");
+
+            clearTimeout(timeoutDescricao);
+
+            timeoutDescricao = setTimeout(function(){
+
+                descricao.classList.remove("visivel");
+
+            }, 4000);
+
+        });
+
     });
 
-    /* =======================================
-       SIMPLE LIGHTBOX — GALERIA (OFICIAL)
-    ======================================= */
-    if (typeof SimpleLightbox !== "undefined") {
-        new SimpleLightbox('.galeria a.lightbox', {
-            captions: true,
-            captionsData: 'alt',
-            captionDelay: 250,
-            nav: true,
-            close: true,
-            showCounter: true,
-            animationSpeed: 250
-        });
-    }
+    fechar.addEventListener("click", fecharPlayer);
 
-    /* =======================================
-       FLIP DOS JOGADORES
-    ======================================= */
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
+    overlay.addEventListener("click", function(e){
 
-    function setupFlip() {
-        const cards = document.querySelectorAll(".card");
-        if (cards.length === 0) return;
+        if(e.target === overlay){
 
-        cards.forEach(card => {
-            if (card.__flipInitialized) return;
-            card.__flipInitialized = true;
+            fecharPlayer();
 
-            // PC → hover
-            card.addEventListener("mouseenter", () => {
-                if (!isMobile()) card.classList.add("virado");
-            });
+        }
 
-            card.addEventListener("mouseleave", () => {
-                if (!isMobile()) card.classList.remove("virado");
-            });
+    });
 
-            // Mobile → clique
-            card.addEventListener("click", function (e) {
-                if (!isMobile()) return;
+    document.addEventListener("keydown", function(e){
 
-                const jaVirado = this.classList.contains("virado");
+        if(e.key === "Escape"){
 
-                document.querySelectorAll(".card.virado").forEach(c => {
-                    if (c !== this) c.classList.remove("virado");
-                });
+            fecharPlayer();
 
-                this.classList.toggle("virado", !jaVirado);
-                e.stopPropagation();
-            });
-        });
+        }
 
-        document.addEventListener('click', function (e) {
-            if (!isMobile()) return;
-            if (!e.target.closest('.card')) {
-                document.querySelectorAll(".card.virado")
-                    .forEach(c => c.classList.remove("virado"));
-            }
-        });
-    }
-
-    setupFlip();
-    window.addEventListener('resize', setupFlip);
-
-    /* =======================================
-       CÁLCULO AUTOMÁTICO DE IDADE
-    ======================================= */
-    function calcularIdade(dataNasc) {
-        const hoje = new Date();
-        const nasc = new Date(dataNasc);
-        let idade = hoje.getFullYear() - nasc.getFullYear();
-        const mes = hoje.getMonth() - nasc.getMonth();
-        if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())) idade--;
-        return idade;
-    }
-
-    document.querySelectorAll('.idade[data-nasc]').forEach(span => {
-        span.textContent = calcularIdade(span.dataset.nasc);
     });
 
 });
+
+</script>
