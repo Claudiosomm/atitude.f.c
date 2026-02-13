@@ -393,10 +393,6 @@ header {
     pointer-events: none;
 }
 
-
-
-
-
 /* TÍTULO DO CARD */
 .card-video h3 {
     font-size: 17px;
@@ -819,38 +815,34 @@ footer {
    OVERLAY VIDEO EXPANDIDO
 ======================================== */
 
-.overlay-video {
 
+.overlay-video {
     display: none;
     position: fixed;
     inset: 0;
-
     background: rgba(0,0,0,0.94);
-
     justify-content: center;
     align-items: center;
-
     z-index: 9999;
+    padding: 20px;
+}
 
+/* quando ativo */
+.overlay-video.ativo {
+    display: flex;
 }
 
 .overlay-player {
-
     position: relative;
-
     width: 95vw;
     max-width: 1200px;
-
 }
 
 .overlay-player iframe {
-
     width: 100%;
     aspect-ratio: 16 / 9;
-
     border-radius: 12px;
     border: none;
-
 }
 
 /* botão fechar */
@@ -883,7 +875,7 @@ footer {
 
     position: absolute;
 
-    bottom: 70px; /* acima dos controles do YouTube */
+    bottom: 60px; /* acima dos controles do YouTube */
 
     left: 0;
 
