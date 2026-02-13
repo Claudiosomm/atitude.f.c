@@ -238,13 +238,11 @@ if(toggle){
         <iframe id="playerExpandido" allowfullscreen></iframe>
 
         <div class="descricao-overlay" id="descricaoExpandida"></div>
-
     </div>
-
 </div>
 
 <script>
-
+    
 const overlay = document.getElementById("overlayVideo");
 const player = document.getElementById("playerExpandido");
 const fechar = document.getElementById("fecharVideo");
@@ -252,23 +250,30 @@ const descricao = document.getElementById("descricaoExpandida");
 
 const cards = document.querySelectorAll(".card-video");
 
+let timeoutDescricao = null;
+
 function fecharPlayer() {
 
     player.src = "";
-    overlay.style.display = "none";
-    descricao.textContent = "";
-}
 
-let timeoutDescricao;
+    overlay.style.display = "none";
+
+    descricao.textContent = "";
+
+    descricao.classList.remove("visivel");
+
+    clearTimeout(timeoutDescricao);
+}
 
 cards.forEach(card => {
 
     card.addEventListener("click", function() {
 
         const iframe = this.querySelector("iframe");
-        const texto = this.querySelector("h3").textContent;
 
         if (!iframe) return;
+
+        const texto = this.querySelector("h3") ? this.querySelector("h3").textContent : "";
 
         const url = iframe.src.split("?")[0];
 
@@ -278,35 +283,36 @@ cards.forEach(card => {
 
         overlay.style.display = "flex";
 
-        // mostrar descrição
         descricao.classList.add("visivel");
 
-        // esconder depois de 4 segundos
         clearTimeout(timeoutDescricao);
 
         timeoutDescricao = setTimeout(() => {
+
             descricao.classList.remove("visivel");
+
         }, 4000);
-
     });
-
 });
 
 fechar.addEventListener("click", fecharPlayer);
 
 overlay.addEventListener("click", function(e) {
+
     if (e.target === overlay) {
+
         fecharPlayer();
     }
 });
 
 document.addEventListener("keydown", function(e) {
+
     if (e.key === "Escape") {
+
         fecharPlayer();
     }
 });
 
 </script>
-
 </body>
 </html>
