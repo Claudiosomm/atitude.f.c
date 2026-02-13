@@ -220,12 +220,23 @@
 
 <div class="overlay-video" id="overlayVideo">
     <div class="overlay-player">
+        
         <button class="fechar-video" id="fecharVideo">✕</button>
+        
+        <!-- SETAS DE NAVEGAÇÃO -->
+        <button class="nav-video nav-anterior" id="videoAnterior">‹</button>
+        <button class="nav-video nav-proximo" id="videoProximo">›</button>
+        
         <iframe id="playerExpandido" 
                 allowfullscreen 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 frameborder="0"></iframe>
+        
         <div class="descricao-overlay" id="descricaoExpandida"></div>
+        
+        <!-- MINIATURAS DOS VÍDEOS -->
+        <div class="galeria-miniaturas" id="galeriaMinis"></div>
+        
     </div>
 </div>
 
