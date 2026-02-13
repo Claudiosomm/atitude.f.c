@@ -915,6 +915,7 @@ footer {
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     -webkit-user-select: none;
+    pointer-events: auto;
 }
 
 /* Garante que o card inteiro seja clicável no mobile */
