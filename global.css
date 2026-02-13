@@ -1059,5 +1059,70 @@ footer {
     }
 }
 
+/* ========================================
+   LAZY LOAD - PREVIEW DOS VÍDEOS
+======================================== */
+
+/* Preview do vídeo (substitui iframe) */
+.video-preview {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--amarelo);
+}
+
+.video-preview img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.video-preview:hover img {
+    transform: scale(1.05);
+}
+
+/* Botão de play sobre a thumbnail */
+.video-preview::after {
+    content: "▶";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: white;
+    background: rgba(255, 0, 0, 0.8);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.video-preview:hover::after {
+    background: rgba(255, 0, 0, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Mobile - botão menor */
+@media (max-width: 768px) {
+    .video-preview::after {
+        font-size: 40px;
+        width: 60px;
+        height: 60px;
+    }
+}
+
 
 
