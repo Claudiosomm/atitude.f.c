@@ -141,27 +141,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         cardsVideo.forEach(card => {
-            const abrirVideo = function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+    const abrirVideo = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-                const iframe = this.querySelector("iframe");
-                if (!iframe) return;
+        const iframe = this.querySelector("iframe");
+        if (!iframe) return;
 
-                const texto = this.querySelector("h3") ? this.querySelector("h3").textContent : "";
-                const url = iframe.src.split("?")[0];
+        const texto = this.querySelector("h3") ? this.querySelector("h3").textContent : "";
+        const url = iframe.src.split("?")[0];
 
-                player.src = url + "?autoplay=1&playsinline=1&enablejsapi=1";
-                descricao.textContent = texto;
-                overlay.style.display = "flex";
-                descricao.classList.add("visivel");
+        player.src = url + "?autoplay=1&playsinline=1&rel=0";  // ← ALTERADO!
+        descricao.textContent = texto;
+        overlay.style.display = "flex";
+        descricao.classList.add("visivel");
 
-                if (timeoutDescricao) clearTimeout(timeoutDescricao);
-                timeoutDescricao = setTimeout(() => {
-                    descricao.classList.remove("visivel");
-                }, 4000);
-            };
-
+        if (timeoutDescricao) clearTimeout(timeoutDescricao);
+        timeoutDescricao = setTimeout(() => {
+            descricao.classList.remove("visivel");
+        }, 4000);
+    };
+    
             // Eventos para desktop e mobile
             card.addEventListener("click", abrirVideo);
             card.addEventListener("touchstart", abrirVideo, {passive: false});
