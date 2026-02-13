@@ -390,7 +390,12 @@ header {
     width: 100%;
     height: 100%;
     border: 0;
+    pointer-events: none;
 }
+
+
+
+
 
 /* TÍTULO DO CARD */
 .card-video h3 {
@@ -810,3 +815,104 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 2px 2px #25F4EE, -2px -2px #FF0050; /* Efeito de sombra do TikTok */
 }
 
+/* ========================================
+   OVERLAY VIDEO EXPANDIDO
+======================================== */
+
+.overlay-video {
+
+    display: none;
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.94);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+}
+
+.overlay-player {
+
+    position: relative;
+
+    width: 95vw;
+    max-width: 1200px;
+
+}
+
+.overlay-player iframe {
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    border-radius: 12px;
+    border: none;
+
+}
+
+/* botão fechar */
+
+.fechar-video {
+
+    position: absolute;
+
+    top: -45px;
+    right: 0;
+
+    background: #ffcc00;
+    color: black;
+
+    border: none;
+
+    padding: 6px 12px;
+
+    font-size: 18px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+}
+
+/* descrição sobre o vídeo */
+
+.descricao-overlay {
+
+    position: absolute;
+
+    bottom: 70px; /* acima dos controles do YouTube */
+
+    left: 0;
+
+    width: 100%;
+
+    padding: 20px;
+
+    color: white;
+
+    font-size: 18px;
+
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+
+    opacity: 0;
+
+    transition: opacity 0.4s ease;
+
+}
+
+.descricao-overlay.visivel {
+
+    opacity: 1;
+
+}
+
+/* impede o vídeo pequeno de ser clicado */
+
+.video-responsivo iframe {
+
+    pointer-events: none;
+
+}
