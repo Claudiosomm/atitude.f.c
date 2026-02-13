@@ -123,64 +123,125 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =======================================
        OVERLAY DE VÍDEOS (MOBILE + DESKTOP)
     ======================================= */
-    const overlay = document.getElementById("overlayVideo");
-    const player = document.getElementById("playerExpandido");
-    const fechar = document.getElementById("fecharVideo");
-    const descricao = document.getElementById("descricaoExpandida");
-    const cardsVideo = document.querySelectorAll(".card-video");
 
-    if (overlay && player && fechar && cardsVideo.length > 0) {
-        let timeoutDescricao = null;
+/* =======================================
+   OVERLAY DE VÍDEOS COM NAVEGAÇÃO
+======================================= */
+const overlay = document.getElementById("overlayVideo");
+const player = document.getElementById("playerExpandido");
+const fechar = document.getElementById("fecharVideo");
+const descricao = document.getElementById("descricaoExpandida");
+const cardsVideo = document.querySelectorAll(".card-video");
+const galeriaMinis = document.getElementById("galeriaMinis");
+const btnAnterior = document.getElementById("videoAnterior");
+const btnProximo = document.getElementById("videoProximo");
 
-        function fecharPlayer() {
-            player.src = "";
-            overlay.style.display = "none";
-            descricao.textContent = "";
-            descricao.classList.remove("visivel");
-            if (timeoutDescricao) clearTimeout(timeoutDescricao);
-        }
+if (overlay && player && fechar && cardsVideo.length > 0) {
+    let timeoutDescricao = null;
+    let videoAtualIndex = 0;
+    const todosVideos = Array.from(cardsVideo);
 
-        cardsVideo.forEach(card => {
-    const abrirVideo = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    // Cria miniaturas
+    function criarMiniaturas() {
+        galeriaMinis.innerHTML = '';
+        
+        todosVideos.forEach((card, index) => {
+            const iframe = card.querySelector('iframe');
+            const titulo = card.querySelector('h3')?.textContent || '';
+            const videoId = iframe.src.match(/embed\/([^?]+)/)?.[1];
+            
+            const mini = document.createElement('div');
+            mini.className = 'mini-video';
+            mini.innerHTML = `
+                <img src="https://img.youtube.com/vi/${videoId}/mqdefault.jpg" alt="${titulo}">
+                <div class="mini-video-titulo">${titulo}</div>
+            `;
+            
+            mini.addEventListener('click', () => abrirVideoIndex(index));
+            galeriaMinis.appendChild(mini);
+        });
+    }
 
-        const iframe = this.querySelector("iframe");
-        if (!iframe) return;
+    // Atualiza miniatura ativa
+    function atualizarMiniaturaAtiva() {
+        document.querySelectorAll('.mini-video').forEach((mini, index) => {
+            mini.classList.toggle('ativo', index === videoAtualIndex);
+        });
+    }
 
-        const texto = this.querySelector("h3") ? this.querySelector("h3").textContent : "";
-        const url = iframe.src.split("?")[0];
+    // Abre vídeo por índice
+    function abrirVideoIndex(index) {
+        videoAtualIndex = index;
+        const card = todosVideos[index];
+        const iframe = card.querySelector('iframe');
+        const texto = card.querySelector('h3')?.textContent || '';
+        const url = iframe.src.split('?')[0];
 
-        player.src = url + "?autoplay=1&playsinline=1&rel=0";  // ← ALTERADO!
+        player.src = url + "?autoplay=1&playsinline=1&rel=0";
         descricao.textContent = texto;
         overlay.style.display = "flex";
         descricao.classList.add("visivel");
+
+        atualizarMiniaturaAtiva();
 
         if (timeoutDescricao) clearTimeout(timeoutDescricao);
         timeoutDescricao = setTimeout(() => {
             descricao.classList.remove("visivel");
         }, 4000);
-    };
-    
-            // Eventos para desktop e mobile
-            card.addEventListener("click", abrirVideo);
-            card.addEventListener("touchstart", abrirVideo, {passive: false});
-        });
-
-        fechar.addEventListener("click", fecharPlayer);
-        fechar.addEventListener("touchstart", fecharPlayer, {passive: false});
-
-        overlay.addEventListener("click", function(e) {
-            if (e.target === overlay) {
-                fecharPlayer();
-            }
-        });
-
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "Escape") {
-                fecharPlayer();
-            }
-        });
     }
 
-}); // Fecha o DOMContentLoaded principal
+    // Fecha player
+    function fecharPlayer() {
+        player.src = "";
+        overlay.style.display = "none";
+        descricao.textContent = "";
+        descricao.classList.remove("visivel");
+        if (timeoutDescricao) clearTimeout(timeoutDescricao);
+    }
+
+    // Navega para vídeo anterior
+    function videoAnterior() {
+        videoAtualIndex = (videoAtualIndex - 1 + todosVideos.length) % todosVideos.length;
+        abrirVideoIndex(videoAtualIndex);
+    }
+
+    // Navega para próximo vídeo
+    function videoProximo() {
+        videoAtualIndex = (videoAtualIndex + 1) % todosVideos.length;
+        abrirVideoIndex(videoAtualIndex);
+    }
+
+    // Eventos nos cards
+    cardsVideo.forEach((card, index) => {
+        card.addEventListener("click", () => abrirVideoIndex(index));
+        card.addEventListener("touchstart", () => abrirVideoIndex(index), {passive: true});
+    });
+
+    // Botões de navegação
+    btnAnterior.addEventListener("click", videoAnterior);
+    btnProximo.addEventListener("click", videoProximo);
+
+    // Fechar
+    fechar.addEventListener("click", fecharPlayer);
+    fechar.addEventListener("touchstart", fecharPlayer, {passive: true});
+
+    overlay.addEventListener("click", function(e) {
+        if (e.target === overlay) {
+            fecharPlayer();
+        }
+    });
+
+    // Navegação por teclado
+    document.addEventListener("keydown", function(e) {
+        if (overlay.style.display === "flex") {
+            if (e.key === "Escape") fecharPlayer();
+            if (e.key === "ArrowLeft") videoAnterior();
+            if (e.key === "ArrowRight") videoProximo();
+        }
+    });
+
+    // Cria miniaturas ao carregar
+    criarMiniaturas();
+}
+
+});
