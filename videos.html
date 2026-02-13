@@ -242,7 +242,9 @@ if(toggle){
 </div>
 
 <script>
-    
+
+document.addEventListener("DOMContentLoaded", function(){
+
 const overlay = document.getElementById("overlayVideo");
 const player = document.getElementById("playerExpandido");
 const fechar = document.getElementById("fecharVideo");
@@ -292,27 +294,36 @@ cards.forEach(card => {
             descricao.classList.remove("visivel");
 
         }, 4000);
+
     });
+
 });
 
 fechar.addEventListener("click", fecharPlayer);
 
-overlay.addEventListener("click", function(e) {
+overlay.addEventListener("click", function(e){
 
-    if (e.target === overlay) {
+    if(e.target === overlay){
 
         fecharPlayer();
+
     }
+
 });
 
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", function(e){
 
-    if (e.key === "Escape") {
+    if(e.key === "Escape"){
 
         fecharPlayer();
+
     }
+
+});
+
 });
 
 </script>
+
 </body>
 </html>
