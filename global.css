@@ -927,6 +927,137 @@ footer {
     pointer-events: none;
 }
 
+/* ========================================
+   NAVEGAÇÃO ENTRE VÍDEOS NO OVERLAY
+======================================== */
+
+/* Setas de navegação */
+.nav-video {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 204, 0, 0.9);
+    color: black;
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.nav-video:hover {
+    background: var(--amarelo-claro);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-anterior {
+    left: -70px;
+}
+
+.nav-proximo {
+    right: -70px;
+}
+
+/* Mobile - setas menores e mais próximas */
+@media (max-width: 768px) {
+    .nav-video {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+    
+    .nav-anterior {
+        left: 10px;
+    }
+    
+    .nav-proximo {
+        right: 10px;
+    }
+}
+
+/* Galeria de miniaturas */
+.galeria-miniaturas {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--amarelo) rgba(0,0,0,0.3);
+}
+
+.galeria-miniaturas::-webkit-scrollbar {
+    height: 6px;
+}
+
+.galeria-miniaturas::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.3);
+    border-radius: 3px;
+}
+
+.galeria-miniaturas::-webkit-scrollbar-thumb {
+    background: var(--amarelo);
+    border-radius: 3px;
+}
+
+/* Miniatura individual */
+.mini-video {
+    min-width: 120px;
+    max-width: 120px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.mini-video:hover {
+    border-color: var(--amarelo);
+    transform: scale(1.05);
+}
+
+.mini-video.ativo {
+    border-color: var(--amarelo);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+}
+
+.mini-video img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+.mini-video-titulo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+    padding: 5px;
+    font-size: 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Mobile - miniaturas maiores */
+@media (max-width: 768px) {
+    .mini-video {
+        min-width: 100px;
+        max-width: 100px;
+    }
+}
 
 
 
