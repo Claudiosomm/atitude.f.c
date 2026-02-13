@@ -191,13 +191,21 @@ if (overlay && player && fechar && cardsVideo.length > 0) {
     }
 
     // Fecha player
-    function fecharPlayer() {
-        player.src = "";
-        overlay.style.display = "none";
-        descricao.textContent = "";
-        descricao.classList.remove("visivel");
-        if (timeoutDescricao) clearTimeout(timeoutDescricao);
+function fecharPlayer(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
     }
+    
+    player.src = "";
+    overlay.style.display = "none";
+    descricao.textContent = "";
+    descricao.classList.remove("visivel");
+    if (timeoutDescricao) clearTimeout(timeoutDescricao);
+    
+    // Força o overlay a esconder
+    overlay.classList.remove("ativo");
+}
 
     // Navega para vídeo anterior
     function videoAnterior() {
@@ -221,15 +229,27 @@ if (overlay && player && fechar && cardsVideo.length > 0) {
     btnAnterior.addEventListener("click", videoAnterior);
     btnProximo.addEventListener("click", videoProximo);
 
-    // Fechar
-    fechar.addEventListener("click", fecharPlayer);
-    fechar.addEventListener("touchstart", fecharPlayer, {passive: true});
+   // Fechar - versão mobile-friendly
+fechar.addEventListener("click", fecharPlayer);
+fechar.addEventListener("touchend", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    fecharPlayer(e);
+}, {passive: false});
 
-    overlay.addEventListener("click", function(e) {
-        if (e.target === overlay) {
-            fecharPlayer();
-        }
-    });
+   overlay.addEventListener("click", function(e) {
+    if (e.target === overlay) {
+        fecharPlayer(e);
+    }
+});
+
+// Adicione também touchend para mobile
+overlay.addEventListener("touchend", function(e) {
+    if (e.target === overlay) {
+        e.preventDefault();
+        fecharPlayer(e);
+    }
+}, {passive: false});
 
     // Navegação por teclado
     document.addEventListener("keydown", function(e) {
