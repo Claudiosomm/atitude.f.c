@@ -157,7 +157,24 @@ if (overlay && player && fechar && cardsVideo.length > 0) {
                 <div class="mini-video-titulo">${titulo}</div>
             `;
             
-            mini.addEventListener('click', () => abrirVideoIndex(index));
+            // Evento de click
+mini.addEventListener('click', () => abrirVideoIndex(index));
+
+// Touch melhorado para miniaturas
+let miniTouchStartX = 0;
+mini.addEventListener('touchstart', (e) => {
+    miniTouchStartX = e.touches[0].clientX;
+}, {passive: true});
+
+mini.addEventListener('touchend', (e) => {
+    const miniTouchEndX = e.changedTouches[0].clientX;
+    const diff = Math.abs(miniTouchEndX - miniTouchStartX);
+    
+    // Só abre se não foi arraste (scroll)
+    if (diff < 10) {
+        abrirVideoIndex(index);
+    }
+}, {passive: true});
             galeriaMinis.appendChild(mini);
         });
     }
@@ -219,11 +236,31 @@ function fecharPlayer(e) {
         abrirVideoIndex(videoAtualIndex);
     }
 
-    // Eventos nos cards
-    cardsVideo.forEach((card, index) => {
-        card.addEventListener("click", () => abrirVideoIndex(index));
-        card.addEventListener("touchstart", () => abrirVideoIndex(index), {passive: true});
-    });
+    // Eventos nos cards - melhorado para mobile
+cardsVideo.forEach((card, index) => {
+    card.addEventListener("click", () => abrirVideoIndex(index));
+    
+    // Touch melhorado - detecta arraste vs toque
+    let touchStartY = 0;
+    let touchStartX = 0;
+    
+    card.addEventListener("touchstart", (e) => {
+        touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
+    }, {passive: true});
+    
+    card.addEventListener("touchend", (e) => {
+        const touchEndY = e.changedTouches[0].clientY;
+        const touchEndX = e.changedTouches[0].clientX;
+        const diffY = Math.abs(touchEndY - touchStartY);
+        const diffX = Math.abs(touchEndX - touchStartX);
+        
+        // Só abre se foi um toque (movimento < 10px)
+        if (diffY < 10 && diffX < 10) {
+            abrirVideoIndex(index);
+        }
+    }, {passive: true});
+});
 
     // Botões de navegação
     btnAnterior.addEventListener("click", videoAnterior);
