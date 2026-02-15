@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =======================================
-       OVERLAY DE VÍDEOS COM NAVEGAÇÃO
+       OVERLAY DE VÍDEOS COM NAVEGAÇÃO E SWIPE
     ======================================= */
     const overlay = document.getElementById("overlayVideo");
     const player = document.getElementById("playerExpandido");
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const videoId = card.getAttribute('data-video-id');
             const texto = card.querySelector('h3')?.textContent || '';
 
-            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0`;
+            player.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`;
             descricao.textContent = texto;
             overlay.style.display = "flex";
             descricao.classList.add("visivel");
@@ -228,6 +228,42 @@ document.addEventListener('DOMContentLoaded', () => {
         function videoProximo() {
             videoAtualIndex = (videoAtualIndex + 1) % todosVideos.length;
             abrirVideoIndex(videoAtualIndex);
+        }
+
+        // SWIPE para navegar entre vídeos (Mobile - estilo TikTok)
+        let swipeTouchStartX = 0;
+        let swipeTouchEndX = 0;
+        let swipeTouchStartY = 0;
+        let swipeTouchEndY = 0;
+
+        overlay.addEventListener('touchstart', function(e) {
+            swipeTouchStartX = e.changedTouches[0].screenX;
+            swipeTouchStartY = e.changedTouches[0].screenY;
+        }, {passive: true});
+
+        overlay.addEventListener('touchend', function(e) {
+            swipeTouchEndX = e.changedTouches[0].screenX;
+            swipeTouchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, {passive: true});
+
+        function handleSwipe() {
+            const diffX = swipeTouchEndX - swipeTouchStartX;
+            const diffY = swipeTouchEndY - swipeTouchStartY;
+            
+            // Ignora se foi scroll vertical (mais vertical que horizontal)
+            if (Math.abs(diffY) > Math.abs(diffX)) return;
+            
+            // Mínimo de 50px para considerar swipe
+            if (Math.abs(diffX) < 50) return;
+            
+            if (diffX > 0) {
+                // Swipe para DIREITA = vídeo ANTERIOR
+                videoAnterior();
+            } else {
+                // Swipe para ESQUERDA = PRÓXIMO vídeo
+                videoProximo();
+            }
         }
 
         // Eventos nos cards - melhorado para mobile
@@ -274,14 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 fecharPlayer(e);
             }
         });
-
-        // Adicione também touchend para mobile
-        overlay.addEventListener("touchend", function(e) {
-            if (e.target === overlay) {
-                e.preventDefault();
-                fecharPlayer(e);
-            }
-        }, {passive: false});
 
         // Navegação por teclado
         document.addEventListener("keydown", function(e) {
