@@ -849,26 +849,41 @@ footer {
 
 /* botão fechar */
 
+/* botão fechar - SEMPRE VISÍVEL */
 .fechar-video {
-
     position: absolute;
-
-    top: -45px;
-    right: 0;
-
-    background: #ffcc00;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 204, 0, 0.95);
     color: black;
-
     border: none;
-
-    padding: 6px 12px;
-
-    font-size: 18px;
-
-    border-radius: 6px;
-
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    border-radius: 50%;
     cursor: pointer;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
 
+.fechar-video:hover {
+    background: var(--amarelo-claro);
+    transform: scale(1.1);
+}
+
+/* Mobile - um pouco maior e mais visível */
+@media (max-width: 768px) {
+    .fechar-video {
+        width: 45px;
+        height: 45px;
+        font-size: 26px;
+        top: 15px;
+        right: 15px;
+    }
 }
 
 /* descrição sobre o vídeo */
@@ -1124,5 +1139,63 @@ footer {
     }
 }
 
+/* ========================================
+   MODO CINEMA - OVERLAY MAXIMIZADO
+======================================== */
 
+/* Mobile - overlay ocupa tela toda */
+@media (max-width: 768px) {
+    .overlay-video {
+        padding: 0;
+    }
+    
+    .overlay-player {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .overlay-player iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        max-height: 60vh; /* Deixa espaço para miniaturas */
+    }
+    
+    /* Ajusta posição das miniaturas no mobile */
+    .galeria-miniaturas {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.8);
+        margin: 0;
+        padding: 15px 10px;
+    }
+    
+    /* Descrição mais visível no mobile */
+    .descricao-overlay {
+        bottom: 80px; /* Acima das miniaturas */
+        font-size: 16px;
+        padding: 15px;
+    }
+    
+    /* Setas mais visíveis no mobile */
+    .nav-video {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
+    
+    .nav-anterior {
+        left: 15px;
+    }
+    
+    .nav-proximo {
+        right: 15px;
+    }
+}
 
