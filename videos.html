@@ -246,25 +246,30 @@
     <p>Site criado por Cláudio</p>
 </footer>
 
+<!-- OVERLAY MODERNO - SEM SETAS (SÓ SWIPE NO MOBILE) -->
+
 <div class="overlay-video" id="overlayVideo">
-    <div class="overlay-player">
+<div class="overlay-player">
+
+<button class="fechar-video" id="fecharVideo">✕</button>
+<div class="video-counter" id="videoCounter">1 / 16</div>
+
+<!-- SETAS - SÓ APARECEM NO PC -->
+<button class="nav-video nav-anterior" id="videoAnterior">‹</button>
+<button class="nav-video nav-proximo" id="videoProximo">›</button>
+
+<iframe id="playerExpandido" 
+        allowfullscreen 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        sandbox="allow-same-origin allow-scripts allow-presentation"
+        frameborder="0"></iframe>
+
+<div class="descricao-overlay" id="descricaoExpandida"></div>
+<div class="galeria-miniaturas" id="galeriaMinis"></div>
+<div class="swipe-hint" id="swipeHint"><span>← Deslize →</span></div>
         
-        <button class="fechar-video" id="fecharVideo">✕</button>
-        
-        <!-- SETAS DE NAVEGAÇÃO -->
-        <button class="nav-video nav-anterior" id="videoAnterior">‹</button>
-        <button class="nav-video nav-proximo" id="videoProximo">›</button>
-        
-        <iframe id="playerExpandido" 
-                allowfullscreen 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                sandbox="allow-same-origin allow-scripts allow-presentation"
-                frameborder="0"></iframe>
-        
-        <div class="descricao-overlay" id="descricaoExpandida"></div>
-        
-        <!-- MINIATURAS DOS VÍDEOS -->
-        <div class="galeria-miniaturas" id="galeriaMinis"></div>
+    </div>
+</div>
         
     </div>
 </div>
