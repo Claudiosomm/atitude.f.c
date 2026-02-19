@@ -812,273 +812,9 @@ footer {
 }
 
 /* ========================================
-   OVERLAY VIDEO EXPANDIDO
-======================================== */
-
-
-.overlay-video {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.94);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    padding: 20px;
-}
-
-/* quando ativo */
-.overlay-video.ativo {
-    display: flex;
-}
-
-.overlay-player {
-    position: relative;
-    width: 95vw;
-    max-width: 1200px;
-}
-
-.overlay-player iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: 12px;
-    border: none;
-    pointer-events: auto !important;
-    touch-action: auto !important;
-}
-
-/* botão fechar */
-
-/* botão fechar - SEMPRE VISÍVEL */
-.fechar-video {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 204, 0, 0.95);
-    color: black;
-    border: none;
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    font-weight: bold;
-}
-
-.fechar-video:hover {
-    background: var(--amarelo-claro);
-    transform: scale(1.1);
-}
-
-/* Mobile - um pouco maior e mais visível */
-@media (max-width: 768px) {
-    .fechar-video {
-        width: 45px;
-        height: 45px;
-        font-size: 26px;
-        top: 15px;
-        right: 15px;
-    }
-}
-
-/* descrição sobre o vídeo */
-
-.descricao-overlay {
-
-    position: absolute;
-
-    bottom: 60px; /* acima dos controles do YouTube */
-
-    left: 0;
-
-    width: 100%;
-
-    padding: 20px;
-
-    color: white;
-
-    font-size: 18px;
-
-    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-
-    opacity: 0;
-
-    transition: opacity 0.4s ease;
-
-}
-
-
-
-.descricao-overlay.visivel {
-
-    opacity: 1;
-
-}
-
-/* impede o vídeo pequeno de ser clicado */
-
-.video-responsivo iframe {
-
-    pointer-events: none;
-
-}
-
-/* FIX PARA MOBILE - VÍDEOS */
-.card-video {
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-    -webkit-user-select: none;
-    pointer-events: auto;
-}
-
-/* Garante que o card inteiro seja clicável no mobile */
-.card-video * {
-    pointer-events: none;
-}
-
-/* ========================================
-   NAVEGAÇÃO ENTRE VÍDEOS NO OVERLAY
-======================================== */
-
-/* Setas de navegação */
-.nav-video {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 204, 0, 0.9);
-    color: black;
-    border: none;
-    width: 50px;
-    height: 50px;
-    font-size: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10000;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-
-.nav-video:hover {
-    background: var(--amarelo-claro);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.nav-anterior {
-    left: -70px;
-}
-
-.nav-proximo {
-    right: -70px;
-}
-
-/* Mobile - setas menores e mais próximas */
-@media (max-width: 768px) {
-    .nav-video {
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
-    }
-    
-    .nav-anterior {
-        left: 10px;
-    }
-    
-    .nav-proximo {
-        right: 10px;
-    }
-}
-
-/* Galeria de miniaturas */
-.galeria-miniaturas {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-    overflow-x: auto;
-    padding: 10px 0;
-    scrollbar-width: thin;
-    scrollbar-color: var(--amarelo) rgba(0,0,0,0.3);
-}
-
-.galeria-miniaturas::-webkit-scrollbar {
-    height: 6px;
-}
-
-.galeria-miniaturas::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.3);
-    border-radius: 3px;
-}
-
-.galeria-miniaturas::-webkit-scrollbar-thumb {
-    background: var(--amarelo);
-    border-radius: 3px;
-}
-
-/* Miniatura individual */
-.mini-video {
-    min-width: 120px;
-    max-width: 120px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.mini-video:hover {
-    border-color: var(--amarelo);
-    transform: scale(1.05);
-}
-
-.mini-video.ativo {
-    border-color: var(--amarelo);
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
-}
-
-.mini-video img {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    display: block;
-}
-
-.mini-video-titulo {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    color: white;
-    padding: 5px;
-    font-size: 10px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Mobile - miniaturas maiores */
-@media (max-width: 768px) {
-    .mini-video {
-        min-width: 100px;
-        max-width: 100px;
-    }
-}
-
-/* ========================================
    LAZY LOAD - PREVIEW DOS VÍDEOS
 ======================================== */
 
-/* Preview do vídeo (substitui iframe) */
 .video-preview {
     position: relative;
     width: 100%;
@@ -1104,7 +840,6 @@ footer {
     transform: scale(1.05);
 }
 
-/* Botão de play sobre a thumbnail */
 .video-preview::after {
     content: "▶";
     position: absolute;
@@ -1130,20 +865,229 @@ footer {
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Mobile - botão menor */
-@media (max-width: 768px) {
-    .video-preview::after {
-        font-size: 40px;
-        width: 60px;
-        height: 60px;
-    }
+.card-video {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    pointer-events: auto;
+}
+
+.card-video * {
+    pointer-events: none;
 }
 
 /* ========================================
-   MODO CINEMA - OVERLAY MAXIMIZADO
+   OVERLAY PROFISSIONAL - ESTILO YOUTUBE/TIKTOK
 ======================================== */
 
-/* Mobile - overlay ocupa tela toda */
+.overlay-video {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.98);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.overlay-player {
+    position: relative;
+    width: 90vw;
+    max-width: 1400px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.overlay-player iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    pointer-events: auto !important;
+    touch-action: auto !important;
+}
+
+/* Botão fechar - moderno */
+.fechar-video {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: rgba(30, 30, 30, 0.9);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.fechar-video:hover {
+    background: rgba(255, 204, 0, 1);
+    color: black;
+    transform: scale(1.1);
+}
+
+/* Contador - estilo YouTube */
+.video-counter {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    background: rgba(30, 30, 30, 0.9);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+/* Descrição */
+.descricao-overlay {
+    position: absolute;
+    bottom: 90px;
+    left: 0;
+    width: 100%;
+    padding: 20px 30px;
+    color: white;
+    font-size: 17px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.descricao-overlay.visivel {
+    opacity: 1;
+}
+
+/* Galeria de miniaturas */
+.galeria-miniaturas {
+    display: flex;
+    gap: 14px;
+    margin-top: 25px;
+    overflow-x: auto;
+    padding: 15px 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,204,0,0.5) rgba(255,255,255,0.1);
+    scroll-behavior: smooth;
+}
+
+.galeria-miniaturas::-webkit-scrollbar {
+    height: 5px;
+}
+
+.galeria-miniaturas::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+}
+
+.galeria-miniaturas::-webkit-scrollbar-thumb {
+    background: rgba(255,204,0,0.5);
+    border-radius: 10px;
+}
+
+.galeria-miniaturas::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,204,0,0.8);
+}
+
+.mini-video {
+    min-width: 160px;
+    max-width: 160px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    position: relative;
+    background: #1a1a1a;
+}
+
+.mini-video:hover {
+    border-color: rgba(255, 204, 0, 0.5);
+    transform: scale(1.05) translateY(-3px);
+}
+
+.mini-video.ativo {
+    border-color: var(--amarelo);
+    box-shadow: 0 0 25px rgba(255, 204, 0, 0.4);
+}
+
+.mini-video img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+.mini-video-titulo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    color: white;
+    padding: 12px 8px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Hint de swipe - estilo TikTok */
+.swipe-hint {
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 204, 0, 0.95);
+    color: black;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+@keyframes swipeHintAnim {
+    0%, 100% { opacity: 0; transform: translateX(-50%) scale(0.9); }
+    15%, 85% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* Animação de transição entre vídeos - estilo TikTok */
+.overlay-player.swipe-left {
+    animation: swipeOutLeft 0.3s ease-out;
+}
+
+.overlay-player.swipe-right {
+    animation: swipeOutRight 0.3s ease-out;
+}
+
+@keyframes swipeOutLeft {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes swipeOutRight {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* ========================================
+   MOBILE - EXPERIÊNCIA TIKTOK (SÓ SWIPE)
+======================================== */
+
 @media (max-width: 768px) {
     .overlay-video {
         padding: 0;
@@ -1156,46 +1100,67 @@ footer {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding: 0 15px;
     }
     
     .overlay-player iframe {
         width: 100%;
-        height: auto;
-        aspect-ratio: 16 / 9;
-        max-height: 60vh; /* Deixa espaço para miniaturas */
+        max-height: 50vh;
+        border-radius: 0;
     }
     
-    /* Ajusta posição das miniaturas no mobile */
+    .fechar-video {
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+        background: rgba(0, 0, 0, 0.85);
+    }
+    
+    .video-counter {
+        top: 20px;
+        left: 20px;
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+    
     .galeria-miniaturas {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(0,0,0,0.8);
+        background: linear-gradient(to top, rgba(0,0,0,0.98), rgba(0,0,0,0.85));
         margin: 0;
-        padding: 15px 10px;
+        padding: 20px 15px 25px;
+        border-top: 1px solid rgba(255, 204, 0, 0.2);
     }
     
-    /* Descrição mais visível no mobile */
+    .mini-video {
+        min-width: 130px;
+        max-width: 130px;
+    }
+    
+    .mini-video-titulo {
+        font-size: 11px;
+        padding: 10px 6px 6px;
+    }
+    
     .descricao-overlay {
-        bottom: 80px; /* Acima das miniaturas */
-        font-size: 16px;
-        padding: 15px;
+        bottom: 150px;
+        font-size: 15px;
+        padding: 15px 20px;
     }
     
-    /* Setas mais visíveis no mobile */
-    .nav-video {
-        width: 50px;
-        height: 50px;
-        font-size: 28px;
+    .video-preview::after {
+        font-size: 50px;
+        width: 70px;
+        height: 70px;
     }
     
-    .nav-anterior {
-        left: 15px;
-    }
-    
-    .nav-proximo {
-        right: 15px;
+    .swipe-hint {
+        bottom: 170px;
+        font-size: 14px;
+        padding: 10px 20px;
     }
 }
-
