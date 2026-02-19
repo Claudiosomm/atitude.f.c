@@ -877,7 +877,7 @@ footer {
 }
 
 /* ========================================
-   OVERLAY PROFISSIONAL - ESTILO YOUTUBE/TIKTOK
+   OVERLAY PROFISSIONAL - PC E MOBILE
 ======================================== */
 
 .overlay-video {
@@ -908,7 +908,7 @@ footer {
     touch-action: auto !important;
 }
 
-/* Botão fechar - moderno */
+/* Botão fechar */
 .fechar-video {
     position: absolute;
     top: -50px;
@@ -935,7 +935,7 @@ footer {
     transform: scale(1.1);
 }
 
-/* Contador - estilo YouTube */
+/* Contador */
 .video-counter {
     position: absolute;
     top: -50px;
@@ -947,6 +947,43 @@ footer {
     font-size: 14px;
     font-weight: 600;
     backdrop-filter: blur(10px);
+}
+
+/* SETAS - SÓ NO PC */
+.nav-video {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(30, 30, 30, 0.85);
+    color: var(--amarelo);
+    border: 2px solid rgba(255, 204, 0, 0.3);
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.nav-video:hover {
+    background: rgba(255, 204, 0, 0.95);
+    color: black;
+    transform: translateY(-50%) scale(1.15);
+    border-color: var(--amarelo);
+}
+
+.nav-anterior {
+    left: -70px;
+}
+
+.nav-proximo {
+    right: -70px;
 }
 
 /* Descrição */
@@ -968,39 +1005,42 @@ footer {
     opacity: 1;
 }
 
-/* Galeria de miniaturas */
+/* Galeria de miniaturas - ROLAGEM CORRIGIDA */
 .galeria-miniaturas {
     display: flex;
     gap: 14px;
     margin-top: 25px;
     overflow-x: auto;
+    overflow-y: hidden; /* IMPORTANTE */
     padding: 15px 0;
+    max-height: 160px; /* ALTURA FIXA */
     scrollbar-width: thin;
-    scrollbar-color: rgba(255,204,0,0.5) rgba(255,255,255,0.1);
+    scrollbar-color: rgba(255,204,0,0.7) rgba(255,255,255,0.1);
     scroll-behavior: smooth;
 }
 
 .galeria-miniaturas::-webkit-scrollbar {
-    height: 5px;
+    height: 8px; /* Barra mais visível */
 }
 
 .galeria-miniaturas::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.08);
     border-radius: 10px;
 }
 
 .galeria-miniaturas::-webkit-scrollbar-thumb {
-    background: rgba(255,204,0,0.5);
+    background: rgba(255,204,0,0.7);
     border-radius: 10px;
 }
 
 .galeria-miniaturas::-webkit-scrollbar-thumb:hover {
-    background: rgba(255,204,0,0.8);
+    background: rgba(255,204,0,1);
 }
 
 .mini-video {
-    min-width: 160px;
-    max-width: 160px;
+    min-width: 180px;
+    max-width: 180px;
+    flex-shrink: 0; /* Não encolhe */
     cursor: pointer;
     border: 3px solid transparent;
     border-radius: 6px;
@@ -1043,7 +1083,7 @@ footer {
     text-overflow: ellipsis;
 }
 
-/* Hint de swipe - estilo TikTok */
+/* Hint de swipe */
 .swipe-hint {
     position: absolute;
     bottom: 200px;
@@ -1065,27 +1105,8 @@ footer {
     15%, 85% { opacity: 1; transform: translateX(-50%) scale(1); }
 }
 
-/* Animação de transição entre vídeos - estilo TikTok */
-.overlay-player.swipe-left {
-    animation: swipeOutLeft 0.3s ease-out;
-}
-
-.overlay-player.swipe-right {
-    animation: swipeOutRight 0.3s ease-out;
-}
-
-@keyframes swipeOutLeft {
-    0% { transform: translateX(0); opacity: 1; }
-    100% { transform: translateX(-100%); opacity: 0; }
-}
-
-@keyframes swipeOutRight {
-    0% { transform: translateX(0); opacity: 1; }
-    100% { transform: translateX(100%); opacity: 0; }
-}
-
 /* ========================================
-   MOBILE - EXPERIÊNCIA TIKTOK (SÓ SWIPE)
+   MOBILE - SÓ SWIPE (SEM SETAS)
 ======================================== */
 
 @media (max-width: 768px) {
@@ -1107,6 +1128,11 @@ footer {
         width: 100%;
         max-height: 50vh;
         border-radius: 0;
+    }
+    
+    /* ESCONDE SETAS NO MOBILE */
+    .nav-video {
+        display: none !important;
     }
     
     .fechar-video {
@@ -1134,6 +1160,7 @@ footer {
         margin: 0;
         padding: 20px 15px 25px;
         border-top: 1px solid rgba(255, 204, 0, 0.2);
+        max-height: 140px;
     }
     
     .mini-video {
