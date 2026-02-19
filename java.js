@@ -311,6 +311,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Botões de navegação (PC)
+        if (btnAnterior && btnProximo) {
+            btnAnterior.addEventListener("click", videoAnterior);
+            btnProximo.addEventListener("click", videoProximo);
+}
+
         // Navegação por teclado
         document.addEventListener("keydown", function(e) {
             if (overlay.style.display === "flex") {
